@@ -1,7 +1,7 @@
-def get_experiment(date,donor,DIV,stimulus,level):
-    experiment=date+'_'+donor+'_'+DIV+'_'+stimulus+'_'+level #Title of the Traj_csv folder without '_Traj_csv'
-    
-    return experiment
+import pandas as pd
+from os import listdir, getcwd, chdir
+from os.path import isfile, join
+
 
 def get_experiment(date,donor,DIV,stimulus,level):
     '''Generates a string for the Traj csv folder you're working in.
@@ -16,7 +16,6 @@ def get_path(model,experiment):
     '''Returns the datapath in your directory corresponding to the Traj csv folder.
     '''
     data_path=f'/Users/brendanbutler/Desktop/Nance Lab/Data/diff_classifier/notebooks/development/MPT_Data/{model} MPT/{experiment}_Traj_csv/'
-    
     return data_path
 
 def get_csvs(data_path,filetype):
