@@ -2,7 +2,7 @@ from diff_viz.utils import *
 import pytest
 
 class TestGetExperiment:
-  """
+    """
     Test class for the get_experiment function.
 
     This class contains tests for the get_experiment function, which generates a string
@@ -23,7 +23,7 @@ class TestGetExperiment:
     - Create an instance of the TestGetExperiment class to run the tests.
     - Call the pytest.main() method to run the tests using the pytest framework.
     """
-  
+
     def test_get_experiment(self):
         date = "2023-04-26"
         donor = "John"
