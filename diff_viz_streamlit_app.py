@@ -32,8 +32,10 @@ if DATA_LOADED:
 
         # Generate the selected plot based on the user's choice
         if choice == 'Diffusion Modes':
-            diffusion_modes.plot_diffusion_modes(ecm=df, target='alpha')
+            fig = (diffusion_modes.plot_diffusion_modes_single_file(ecm=df))
+            st.pyplot(fig)
+            st.write(uploaded_file.name)
         elif choice == 'MSDs':
-            st.write('Sorry, this feature is not yet available! - Nels')
+            st.write('Sorry, this feature is not yet available! - Brendan and Nels')
         elif choice == 'Individual Trajectories':
-            st.write('Sorry, this feature is not yet available! - Nels')
+            st.write('Sorry, this feature is not yet available! - Brendan and Nels')
