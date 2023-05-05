@@ -20,7 +20,6 @@ def get_path(model,experiment):
     '''Returns the datapath in your directory corresponding to the Traj csv folder.
     '''
     data_path=f'/Users/brendanbutler/Desktop/Nance Lab/Data/diff_classifier/notebooks/development/MPT_Data/{model} MPT/{experiment}_Traj_csv/'
-    
     return data_path
 
 def get_csvs(data_path,filetype):

@@ -7,3 +7,7 @@ Specifically, this package will enable users to:
 - Create publication-worthy plots 
 
 - Build on template plots to create visualizations for new use cases
+
+
+To run the Streamlit app, in the command line execute:
+streamlit run diff_viz_streamlit_app.py
