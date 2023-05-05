@@ -1,0 +1,17 @@
+{
+    "Output_Type": "geomean",
+    "Date_collected": "102722",
+    "Magnification": "100X",
+    "Frame_Rate": "67fps",
+    "Model_system": {
+        "descriptor1": "rat",
+        "descriptor2": "P10F"
+    },
+    "variables": {
+        "variable1": "4DIV",
+        "variable2": "HYase",
+        "variable3": "35Uml",
+        "variable4": "0m"
+    },
+    "replicates": "1"
+}
