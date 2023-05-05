@@ -1,3 +1,7 @@
+import os
+from os import listdir, getcwd, chdir
+from os.path import isfile, join
+
 def get_experiment(date,donor,DIV,stimulus,level):
     experiment=date+'_'+donor+'_'+DIV+'_'+stimulus+'_'+level #Title of the Traj_csv folder without '_Traj_csv'
     
