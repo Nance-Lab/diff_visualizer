@@ -1,0 +1,10 @@
+- python >= 3.7
+- streamlit >= 1.9.2
+- pandas
+- numpy
+- matplotlib
+- seaborn
+- pytest
+- jupyter
+- ipykernel
+- watchdog==3.0.0
