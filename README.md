@@ -9,5 +9,8 @@ Specifically, this package will enable users to:
 - Build on template plots to create visualizations for new use cases
 
 
-To run the Streamlit app, in the command line execute:
+To run the Streamlit app locally, in the command line execute:
 streamlit run diff_viz_streamlit_app.py
+
+To run the hosted Streamlit app in your browser, use this link:
+https://nance-lab-diff-viz-diff-metadata-generator-app-3eh53p.streamlit.app/
