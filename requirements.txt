@@ -8,4 +8,4 @@
 - jupyter
 - ipykernel
 - watchdog==3.0.0
-- streamlit-tags==1.2.8
+- streamlit_tags==1.2.8
