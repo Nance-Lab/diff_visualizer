@@ -5,6 +5,7 @@ dependencies:
 - streamlit >= 1.9.2
 - pip:
   - pandas
+  - streamlib
   - numpy
   - matplotlib
   - seaborn
