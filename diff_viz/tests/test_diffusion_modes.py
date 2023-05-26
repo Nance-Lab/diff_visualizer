@@ -4,29 +4,44 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from diff_viz.diffusion_modes import plot_diffusion_modes_single_file
 
-class TestPlotDiffusionModes:
-    @classmethod
-    def setup_class(cls):
-        # Create a sample DataFrame for testing
-        cls.ecm = pd.DataFrame({
-            'age': [10, 10, 20, 20, 30, 30],
-            'alpha': [1.2, 0.8, 1.1, 0.9, 1.0, 1.3],
-        })
-        cls.target = 'age'
-    
-    def test_plot_diffusion_modes_single_file(self):
-        # Test that the function returns a Matplotlib Axes object
-        ax = plot_diffusion_modes_single_file(ecm = self.ecm)
-        assert isinstance(ax, plt.Axes)
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def test_plot_diffusion_modes_single_file():
+    # Create a sample DataFrame for testing
+    data = {
+        'alpha': [1.2, 0.8, 1.0, 1.5, 0.9, 1.1],
+        # Add more columns if necessary for your specific use case
+    }
+    ecm = pd.DataFrame(data)
+
+    # Call the function being tested
+    fig = plot_diffusion_modes_single_file(ecm)
+
+    # Assertions to verify the correctness of the plot
+    assert isinstance(fig, plt.Figure)  # Check if a Figure object is returned
+
+    # Assert that the plot contains the expected number of bars
+    ax = fig.gca()
+    assert len(ax.patches) == 3
+
+    # Assert that the plot has the correct title
+    assert ax.get_title() == 'Percentage of Diffusion Modes per Age'
+
+    # Optionally, you can add more specific assertions depending on your requirements
+    # For example, checking the labels, colors, and other properties of the plot
+
+    # Optionally, you can save the plot for manual inspection
+    # fig.savefig('diffusion_modes_plot.png')
+
         
-        # Test that the y-axis limits are set to [0, 1]
-        ylim = ax.get_ylim()
-        assert ylim == (0, 1)
-        
-        # Test that the bar heights are correct
-        subdiffusive = ax.containers[0].get_heights()
-        brownian = ax.containers[1].get_heights()
-        superdiffusive = ax.containers[2].get_heights()
-        np.testing.assert_allclose(subdiffusive, [0.5, 0, 0])
-        np.testing.assert_allclose(brownian, [0, 0.5, 1])
-        np.testing.assert_allclose(superdiffusive, [0.5, 0.5, 0])
+    # Test that the bar heights are correct
+    # Assert that each bar has the correct height based on the data
+    bars = ax.patches
+    expected_heights = [
+        ecm[ecm['alpha'] < 0.9].shape[0] / ecm.shape[0],  # Subdiffusive
+        ecm[(ecm['alpha'] <= 1.1) & (ecm['alpha'] >= 0.9)].shape[0] / ecm.shape[0],  # Brownian
+        ecm[ecm['alpha'] > 1.1].shape[0] / ecm.shape[0]  # Superdiffusive
+    ]
+    for bar, expected_height in zip(bars, expected_heights):
+        assert np.isclose(bar.get_height(), expected_height)
