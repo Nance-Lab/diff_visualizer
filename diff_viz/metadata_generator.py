@@ -20,7 +20,7 @@ def write_json(data, file_path):
         json.dump(data, f, indent=4)
 
 
-def generate_metadata(data):
+#def generate_metadata(data):
 
     
 
