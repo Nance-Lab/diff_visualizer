@@ -1,4 +1,4 @@
-name: diff_vis
+name: diff_viz
 channels:
   - defaults
 dependencies:

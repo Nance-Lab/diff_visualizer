@@ -1,21 +1,25 @@
 from matplotlib import pyplot as plt
+import numpy as np
 
 
-
+def plot_pca(pca_embeddings_df, target_column, num_points='all'):
 # Normal PCA
-fig = plt.figure(figsize=(12,7))
-for unique_class in pca_embeddings_df['target'].unique():
-    print(unique_class)
-    df = pca_embeddings_df[pca_embeddings_df['target'] == unique_class].sample(100) # We plot less points to make a cleaner figure
-    x = df['Component 1']
-    y = df['Component 2']
-    plt.scatter(x,y, alpha=0.5, s=4, label=unique_class)#, c=colors[unique_class])
-plt.legend(loc='lower left')
-plt.xlim([-13,13])
-plt.ylim([-13,13])
-plt.xlabel('PC1')
-plt.ylabel('PC2')
-plt.title('First and Second Principal Components of Age Dataset')
+    fig = plt.figure(figsize=(12,7))
+    for unique_class in pca_embeddings_df[target_column].unique():
+        print(unique_class)
+        df = pca_embeddings_df[pca_embeddings_df[target_column] == unique_class].sample(100) # We plot less points to make a cleaner figure
+        x = df['Component 1']
+        y = df['Component 2']
+        plt.scatter(x,y, alpha=0.5, s=4, label=unique_class)#, c=colors[unique_class])
+    plt.legend(loc='lower left')
+    plt.xlim([-13,13])
+    plt.ylim([-13,13])
+    plt.xlabel('PC1')
+    plt.ylabel('PC2')
+    plt.title('First and Second Principal Components of Age Dataset')
+
+    return fig
+
 
 # Bi plot
 def myplot(score,coeff,labels=None, targets=None, num_points='all'):
