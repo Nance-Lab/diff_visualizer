@@ -41,14 +41,14 @@ def get_df_dose_list(doses,geomean_df):
 
 def msd_viz(doses,geomean_df,df_dose_list):
     count = 0
-    
+    labels = 'Roteneone'
     if len(doses) == 1:
         tau = geomean_df.index.values / 651
         fig, ax = plt.subplots(figsize=(6,6))
         #plt.suptitle(f'MSD Analysis for {model} experiment {experiment}',fontsize=20)
         plt.rcParams.update({'font.family':'helvetica'})
         handles = list(geomean_df.columns)
-        labels = [handle.split(stimulus+'_')[1] for handle in handles]
+        #labels = [handle.split(stimulus+'_')[1] for handle in handles]
     
         for handle in handles:    
             ax.loglog(tau[0:70],geomean_df[handle][0:70])
@@ -70,7 +70,7 @@ def msd_viz(doses,geomean_df,df_dose_list):
             #err = sem_dose_list[count][handles[c]][0:70]/2
             times = []
             handles = list(df_dose_list[c].columns)
-            labels = [handle.split(stimulus+'_')[1] for handle in handles]
+            #labels = [handle.split(stimulus+'_')[1] for handle in handles]
             print(handles,labels)
             #err = sem_dose_list[count][handles[c]][0:70]/2
             axes[c].loglog(tau[0:70],df_dose_list[count][0:70])
