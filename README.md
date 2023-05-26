@@ -1,3 +1,5 @@
+[![Python Package using Conda](https://github.com/Nance-Lab/diff_viz/actions/workflows/python-package-conda.yml/badge.svg?branch=main)](https://github.com/Nance-Lab/diff_viz/actions/workflows/python-package-conda.yml)
+
 This package will allow researchers working with Multiple Particle Tracking (MPT) data to quickly generate informative data visualizations.
 
 Specifically, this package will enable users to: 
