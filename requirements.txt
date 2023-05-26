@@ -1,9 +1,9 @@
-- pandas
-- numpy
-- matplotlib
-- seaborn
-- pytest
-- jupyter
-- ipykernel
-- streamlit_tags
-- streamlit==1.9.2
+pandas
+numpy
+matplotlib
+seaborn
+pytest
+jupyter
+ipykernel
+streamlit_tags
+streamlit==1.9.2
