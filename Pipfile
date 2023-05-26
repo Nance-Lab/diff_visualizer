@@ -10,6 +10,9 @@ pandas = "*"
 numpy = "*"
 
 [dev-packages]
+streamlit = "*"
+pandas = "*"
+numpy = "*"
 
 [requires]
 python_version = "3.9"
