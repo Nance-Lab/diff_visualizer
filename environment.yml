@@ -2,7 +2,7 @@ name: diff_vis
 channels:
   - defaults
 dependencies:
-  - python>=3.7
+  - python>=3.9
   - pandas
   - numpy
   - matplotlib
@@ -10,5 +10,5 @@ dependencies:
   - pytest
   - jupyter
   - ipykernel
-  - streamlit_tags
-  - streamlit==1.9.2
+  #- streamlit_tags
+  #- streamlit==1.9.2
