@@ -2,7 +2,7 @@ import pytest
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from diff_viz.diffusion_modes import plot_diffusion_modes
+from diff_viz.diffusion_modes import plot_diffusion_modes_single_file
 
 class TestPlotDiffusionModes:
     @classmethod
@@ -14,9 +14,9 @@ class TestPlotDiffusionModes:
         })
         cls.target = 'age'
     
-    def test_plot_diffusion_modes(self):
+    def test_plot_diffusion_modes_single_file(self):
         # Test that the function returns a Matplotlib Axes object
-        ax = plot_diffusion_modes(self.ecm, self.target)
+        ax = plot_diffusion_modes_single_file(ecm = self.ecm)
         assert isinstance(ax, plt.Axes)
         
         # Test that the y-axis limits are set to [0, 1]
