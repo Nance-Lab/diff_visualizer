@@ -1,4 +1,6 @@
-[![Python package](https://github.com/Nance-Lab/diff_viz/actions/workflows/python-package.yml/badge.svg?branch=main)](https://github.com/Nance-Lab/diff_viz/actions/workflows/python-package.yml)
+![GitHub](https://img.shields.io/github/license/nance-lab/diff_viz)
+
+[![Tests](https://github.com/Nance-Lab/diff_viz/actions/workflows/python-package.yml/badge.svg?branch=main)](https://github.com/Nance-Lab/diff_viz/actions/workflows/python-package.yml)
 
 [![Documentation Status](https://readthedocs.org/projects/diff-viz/badge/?version=latest)](https://diff-viz.readthedocs.io/en/latest/?badge=latest)
 
