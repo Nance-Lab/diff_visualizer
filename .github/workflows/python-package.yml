@@ -52,6 +52,6 @@ jobs:
         name: coverage-report
         path: coverage.xml
 
-    - name: Coveralls GitHub Action
-      uses: coverallsapp/github-action@v1
+    # - name: Coveralls GitHub Action
+    #   uses: coverallsapp/github-action@v1
 
