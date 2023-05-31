@@ -28,7 +28,7 @@ jobs:
       #     path: docs/tutorials
 
       - name: Trigger RTDs build
-        uses: nance-lab/diff_viz@v1
+        uses: ./
         with:
           webhook_url: ${{ secrets.RTDS_WEBHOOK_URL }}
           webhook_token: ${{ secrets.RTDS_WEBHOOK_TOKEN }}
