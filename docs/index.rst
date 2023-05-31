@@ -24,9 +24,10 @@ Specifically, this package will enable users to:
 
    Modules/data_loading
    Modules/diffusion_modes
-   Modules/msd 
+   Modules/msd
    Modules/pca_viz
    Modules/utils
+
 
 .. Indices and tables
 .. ==================

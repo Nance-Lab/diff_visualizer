@@ -1,13 +1,10 @@
 msd
-===
-
-Module for plotting Mean Squared Displacement of nanoaprticle trajectories
+=======
+Modules for plotting Mean Squared Displacement from MPT data
 
 .. currentmodule:: diff_viz.msd
 
 .. autosummary:: 
     :toctree: Modules/
 
-    get_msd_dose_dict
-    get_df_dose_list
     msd_viz

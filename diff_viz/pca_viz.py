@@ -1,3 +1,7 @@
+""" 
+Module for making PCA plots from MPT datasets
+"""
+
 from matplotlib import pyplot as plt
 import numpy as np
 

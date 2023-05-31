@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>diff_viz.utils.get_geo_dict &mdash; diff_viz 00.00.01 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="diff_viz.utils.get_df_dose_list" href="diff_viz.utils.get_df_dose_list.html" />
+    <link rel="prev" title="diff_viz.utils.get_csvs" href="diff_viz.utils.get_csvs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            diff_viz
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../data_loading.html">data_loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_modes.html">diffusion_modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../msd.html">msd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pca_viz.html">pca_viz</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../utils.html">utils</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="diff_viz.utils.get_experiment.html">diff_viz.utils.get_experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diff_viz.utils.get_path.html">diff_viz.utils.get_path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diff_viz.utils.get_csvs.html">diff_viz.utils.get_csvs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">diff_viz.utils.get_geo_dict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diff_viz.utils.get_df_dose_list.html">diff_viz.utils.get_df_dose_list</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">diff_viz</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../utils.html">utils</a></li>
+      <li class="breadcrumb-item active">diff_viz.utils.get_geo_dict</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Modules/Modules/diff_viz.utils.get_geo_dict.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="diff-viz-utils-get-geo-dict">
+<h1>diff_viz.utils.get_geo_dict<a class="headerlink" href="#diff-viz-utils-get-geo-dict" title="Permalink to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="diff_viz.utils.get_geo_dict">
+<span class="sig-prename descclassname"><span class="pre">diff_viz.utils.</span></span><span class="sig-name descname"><span class="pre">get_geo_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geo_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doses</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/diff_viz/utils.html#get_geo_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diff_viz.utils.get_geo_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Converts the list of csv files into a dictionary split by dose (50nM ROT, 0.5h OGD, etc.)</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="diff_viz.utils.get_csvs.html" class="btn btn-neutral float-left" title="diff_viz.utils.get_csvs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="diff_viz.utils.get_df_dose_list.html" class="btn btn-neutral float-right" title="diff_viz.utils.get_df_dose_list" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Nels Schimek, Brendan Butler.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

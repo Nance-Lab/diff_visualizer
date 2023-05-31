@@ -19,7 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="pca_viz" href="pca_viz.html" /> 
+    <link rel="next" title="diff_viz.utils.get_experiment" href="Modules/diff_viz.utils.get_experiment.html" />
+    <link rel="prev" title="diff_viz.pca_viz.myplot" href="Modules/diff_viz.pca_viz.myplot.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,7 +48,14 @@
 <li class="toctree-l1"><a class="reference internal" href="diffusion_modes.html">diffusion_modes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="msd.html">msd</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pca_viz.html">pca_viz</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">utils</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Modules/diff_viz.utils.get_experiment.html">diff_viz.utils.get_experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Modules/diff_viz.utils.get_path.html">diff_viz.utils.get_path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Modules/diff_viz.utils.get_csvs.html">diff_viz.utils.get_csvs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Modules/diff_viz.utils.get_geo_dict.html">diff_viz.utils.get_geo_dict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Modules/diff_viz.utils.get_df_dose_list.html">diff_viz.utils.get_df_dose_list</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -76,13 +84,34 @@
              
   <section id="utils">
 <h1>utils<a class="headerlink" href="#utils" title="Permalink to this heading"></a></h1>
+<p>Module with utility functions for the diff_viz package and MPT data</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="Modules/diff_viz.utils.get_experiment.html#diff_viz.utils.get_experiment" title="diff_viz.utils.get_experiment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_experiment</span></code></a>(date, donor, DIV, stimulus, level)</p></td>
+<td><p>Generates a string for the Traj csv folder you're working in.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="Modules/diff_viz.utils.get_path.html#diff_viz.utils.get_path" title="diff_viz.utils.get_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_path</span></code></a>(model, experiment)</p></td>
+<td><p>Returns the datapath in your directory corresponding to the Traj csv folder.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="Modules/diff_viz.utils.get_csvs.html#diff_viz.utils.get_csvs" title="diff_viz.utils.get_csvs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_csvs</span></code></a>(data_path, filetype)</p></td>
+<td><p>Returns the master list of csv files in the Traj csv folder, geoMean or geoSEM files depending on user input.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="Modules/diff_viz.utils.get_geo_dict.html#diff_viz.utils.get_geo_dict" title="diff_viz.utils.get_geo_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_geo_dict</span></code></a>(geo_list, doses)</p></td>
+<td><p>Converts the list of csv files into a dictionary split by dose (50nM ROT, 0.5h OGD, etc.)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="Modules/diff_viz.utils.get_df_dose_list.html#diff_viz.utils.get_df_dose_list" title="diff_viz.utils.get_df_dose_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_df_dose_list</span></code></a>(doses, geo_df)</p></td>
+<td><p>Generates list of column headers for plotting purposes.</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="pca_viz.html" class="btn btn-neutral float-left" title="pca_viz" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Modules/diff_viz.pca_viz.myplot.html" class="btn btn-neutral float-left" title="diff_viz.pca_viz.myplot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Modules/diff_viz.utils.get_experiment.html" class="btn btn-neutral float-right" title="diff_viz.utils.get_experiment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
