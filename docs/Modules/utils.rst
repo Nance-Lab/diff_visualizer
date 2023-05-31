@@ -1,5 +1,6 @@
 utils
 =====
+Module with utility functions for the diff_viz package and MPT data
 
 .. currentmodule:: diff_viz.utils
 
