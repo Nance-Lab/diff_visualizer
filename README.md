@@ -4,6 +4,9 @@
 
 [![Documentation Status](https://readthedocs.org/projects/diff-viz/badge/?version=latest)](https://diff-viz.readthedocs.io/en/latest/?badge=latest)
 
+[![Coverage](https://img.shields.io/badge/Coverage-${{ env.COVERAGE_PERCENT }}%25-brightgreen.svg)](coverage-report)
+
+
 ## diff_viz
 
 This package will allow researchers working with Multiple Particle Tracking (MPT) data to quickly generate informative data visualizations.
