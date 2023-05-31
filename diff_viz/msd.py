@@ -8,7 +8,6 @@ from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 
 from os import listdir, getcwd, chdir
 from os.path import isfile, join
-from sklearn import linear_model
 
 
 
