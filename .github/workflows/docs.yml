@@ -1,35 +1,16 @@
-name: Docs
-on: [push, release]
+name: RTD Build
+
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  notebooks:
-    name: "Build the docs"
+  build:
+    name: Build Documentation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8
-
-      - name: Install dependencies
+      - name: Trigger RTD Build
         run: |
-          python -m pip install -U pip
-          python -m pip install -r requirements.txt
-
-      # - name: Execute the notebooks
-      #   run: |
-      #     jupytext --to ipynb --execute docs/tutorials/*.py
-
-      # - uses: actions/upload-artifact@v2
-      #   with:
-      #     name: notebooks-for-${{ github.sha }}
-      #     path: docs/tutorials
-
-      - name: Trigger RTDs build
-        uses: ./
-        with:
-          webhook_url: ${{ secrets.RTDS_WEBHOOK_URL }}
-          webhook_token: ${{ secrets.RTDS_WEBHOOK_TOKEN }}
-          commit_ref: ${{ github.ref }}
+          curl -X POST -H "Authorization: Bearer ${{ secrets.RTDS_WEBHOOK_TOKEN }}" \
+          https://readthedocs.org/api/v3/projects/diff_viz/builds/
