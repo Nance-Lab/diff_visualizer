@@ -14,3 +14,6 @@ jobs:
         run: |
           curl -X POST -H "Authorization: Bearer ${{ secrets.RTDS_WEBHOOK_TOKEN }}" \
           https://readthedocs.org/api/v3/projects/diff_viz/builds/
+          -H "Content-Type: application/json" \
+          -d '{"versions": ["latest"], "trigger": "github"}' \
+          https://readthedocs.org/api/v3/projects/diff_viz/versions/latest/builds/
