@@ -10,7 +10,6 @@ from os import listdir, getcwd, chdir
 from os.path import isfile, join
 from sklearn import linear_model
 
-import utils
 
 
 def get_msd_dose_dict(doses):

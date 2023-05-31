@@ -1,3 +1,8 @@
+""" 
+Module for utility functions for diff_viz and MPT data
+"""
+
+
 import os
 from os import listdir, getcwd, chdir
 from os.path import isfile, join

@@ -6,6 +6,17 @@
 Welcome to diff_viz's documentation!
 ====================================
 
+The goal of this package is to allow researchers working with Multiple Particle Tracking (MPT) data 
+to quickly generate informative data visualizations.
+
+Specifically, this package will enable users to:
+
+- Automatically generate plots for exploratory data analysis
+
+- Create publication-worthy plots
+
+- Build on template plots to create visualizations for new use cases
+
 .. toctree::
    :maxdepth: 2
    :hidden:
@@ -13,9 +24,10 @@ Welcome to diff_viz's documentation!
 
    Modules/data_loading
    Modules/diffusion_modes
-   Modules/msd 
+   Modules/msd
    Modules/pca_viz
    Modules/utils
+
 
 .. Indices and tables
 .. ==================
