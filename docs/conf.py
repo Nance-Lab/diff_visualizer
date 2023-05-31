@@ -32,9 +32,9 @@ release = '00.00.01'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
+    #'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
-    'sphinx.ext.napoleon',
+    #'sphinx.ext.napoleon',
     'numpydoc'
 
 ]
@@ -48,6 +48,7 @@ templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 autosummary_generate = True
+numpydoc_show_class_members = False
 
 # -- Options for HTML output -------------------------------------------------
 
