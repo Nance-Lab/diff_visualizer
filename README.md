@@ -4,6 +4,7 @@
 
 [![Documentation Status](https://readthedocs.org/projects/diff-viz/badge/?version=latest)](https://diff-viz.readthedocs.io/en/latest/?badge=latest)
 
+[![codecov](https://codecov.io/gh/Nance-Lab/diff_viz/branch/main/graph/badge.svg?token=GKJQGMB080)](https://codecov.io/gh/Nance-Lab/diff_viz)
 
 ## diff_viz
 
