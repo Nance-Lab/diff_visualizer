@@ -1,5 +1,6 @@
 diffusion_modes
 ===============
+Functions for plotting diffusion modes of nanoparticle trajectories
 
 .. currentmodule:: diff_viz.diffusion_modes
 

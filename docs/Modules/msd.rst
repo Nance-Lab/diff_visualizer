@@ -1,6 +1,8 @@
 msd
 ===
 
+Module for plotting Mean Squared Displacement of nanoaprticle trajectories
+
 .. currentmodule:: diff_viz.msd
 
 .. autosummary:: 
