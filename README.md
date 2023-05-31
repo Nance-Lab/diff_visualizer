@@ -2,6 +2,8 @@
 
 [![Documentation Status](https://readthedocs.org/projects/diff-viz/badge/?version=latest)](https://diff-viz.readthedocs.io/en/latest/?badge=latest)
 
+## diff_viz
+
 This package will allow researchers working with Multiple Particle Tracking (MPT) data to quickly generate informative data visualizations.
 
 Specifically, this package will enable users to: 
@@ -12,9 +14,14 @@ Specifically, this package will enable users to:
 
 - Build on template plots to create visualizations for new use cases
 
+## Running diff_viz on Streamlit
 
 To run the Streamlit app locally, in the command line execute:
 streamlit run diff_viz_streamlit_app.py
 
 To run the hosted Streamlit app in your browser, use this link:
 https://nance-lab-diff-viz-diff-metadata-generator-app-3eh53p.streamlit.app/
+
+## Documentation
+
+Full [documentation][https://diff-viz.readthedocs.io/en/latest/index.html] for diff_viz can be found on Read the Docs
