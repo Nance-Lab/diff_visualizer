@@ -51,6 +51,9 @@ jobs:
       with:
         name: coverage-report
         path: coverage.xml
+        
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v3
 
     # - name: Coveralls GitHub Action
     #   uses: coverallsapp/github-action@v1
