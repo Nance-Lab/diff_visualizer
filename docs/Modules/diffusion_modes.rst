@@ -7,4 +7,5 @@ Functions for plotting diffusion modes of nanoparticle trajectories
 .. autosummary:: 
     :toctree: Modules/
 
-    plot_diffusion_modes_single_file
+    plot_diffusion_modes_single_label
+    plot_diffusion_modes
