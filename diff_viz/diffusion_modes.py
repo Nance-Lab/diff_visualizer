@@ -44,7 +44,7 @@ def plot_diffusion_modes_single_label(ecm, label_name, bar_width=0.01, figsize=(
 
     plt.ylim(ylim)
     plt.legend(loc=legend_loc, fontsize=legend_fontsize)
-    plt.title('Percentage of Diffusion Modes per Age', fontsize=title_fontsize, fontname='Arial', fontweight='bold')
+    plt.title(f'Percentage of Diffusion Modes per {label_name}', fontsize=title_fontsize, fontname='Arial', fontweight='bold')
     plt.xticks(fontsize=tick_fontsize, fontname='Arial', fontweight='bold')
     plt.yticks(fontsize=tick_fontsize, fontname='Arial', fontweight='bold')
 
