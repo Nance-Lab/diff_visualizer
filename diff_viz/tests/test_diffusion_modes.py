@@ -2,12 +2,12 @@ import pytest
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from diff_viz.diffusion_modes import plot_diffusion_modes_single_file
+from diff_viz.diffusion_modes import plot_diffusion_modes_single_label, plot_diffusion_modes
 
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def test_plot_diffusion_modes_single_file():
+def test_plot_diffusion_modes_single_label():
     # Create a sample DataFrame for testing
     data = {
         'alpha': [1.2, 0.8, 1.0, 1.5, 0.9, 1.1],
@@ -16,7 +16,7 @@ def test_plot_diffusion_modes_single_file():
     ecm = pd.DataFrame(data)
 
     # Call the function being tested
-    fig = plot_diffusion_modes_single_file(ecm)
+    fig = plot_diffusion_modes_single_label(ecm, 'Age')
 
     # Assertions to verify the correctness of the plot
     assert isinstance(fig, plt.Figure)  # Check if a Figure object is returned
