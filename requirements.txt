@@ -9,3 +9,4 @@ streamlit_tags
 streamlit==1.9.2
 numpydoc==1.5.0
 coverage
+hypothesis==6.75.9

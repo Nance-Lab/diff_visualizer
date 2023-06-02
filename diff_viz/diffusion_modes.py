@@ -86,21 +86,16 @@ def plot_diffusion_modes(df, label_column, bar_width=0.5, figsize=(4, 8), color_
     subdiffusive_percent = np.zeros(len(labels))
 
     for i, unique_class in enumerate(labels):
-        print(unique_class)
         ecm = df[df[label_column] == unique_class]
 
         directed_df = ecm[ecm['alpha'] > 1.1]
         superdiffusive_percent[i] = (len(directed_df)/len(ecm))
-        print(superdiffusive_percent[i])
 
         normal_df = ecm[(ecm['alpha'] <= 1.1) & (ecm['alpha'] >= 0.9)]
         brownian_percent[i] = (len(normal_df)/len(ecm))
-        print(brownian_percent[i])
         
         constrained_df = ecm[(ecm['alpha'] < 0.9)]
         subdiffusive_percent[i] = (len(constrained_df)/len(ecm))
-        print(subdiffusive_percent[i])
-        print()
         
         #immobilized_df = df[(df['alpha'] <= 0.1)]
         #immobilized_percent[i] = (len(immobilized_df)/len(df))

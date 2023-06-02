@@ -3,9 +3,17 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from diff_viz.diffusion_modes import plot_diffusion_modes_single_label, plot_diffusion_modes
-
+from diff_predictor import data_process
 import pandas as pd
 import matplotlib.pyplot as plt
+
+# Set up the testing data
+testing_data_path = '../diff_viz/diff_viz/tests/testing_data/'
+striatum_file = 'features_60X_Striatum_Slice2_Video1.csv'
+cortex_file = 'features_100X_OGD_Cortex_Slice2_Video1.csv'
+df_striat = pd.read_csv(testing_data_path+striatum_file)
+df_cort = pd.read_csv(testing_data_path+cortex_file)
+testing_df = data_process.generate_fullstats(testing_data_path, [striatum_file, cortex_file], ['Striatum', 'Cortex'], 'region')
 
 def test_plot_diffusion_modes_single_label():
     # Create a sample DataFrame for testing
@@ -28,12 +36,6 @@ def test_plot_diffusion_modes_single_label():
     # Assert that the plot has the correct title
     assert ax.get_title() == 'Percentage of Diffusion Modes per Age'
 
-    # Optionally, you can add more specific assertions depending on your requirements
-    # For example, checking the labels, colors, and other properties of the plot
-
-    # Optionally, you can save the plot for manual inspection
-    # fig.savefig('diffusion_modes_plot.png')
-
         
     # Test that the bar heights are correct
     # Assert that each bar has the correct height based on the data
@@ -45,3 +47,17 @@ def test_plot_diffusion_modes_single_label():
     ]
     for bar, expected_height in zip(bars, expected_heights):
         assert np.isclose(bar.get_height(), expected_height)
+
+
+def test_plot_diffusion_modes():
+
+    fig = plot_diffusion_modes(testing_df, 'region')
+    ax = fig.gca()
+
+    assert isinstance(fig, plt.Figure)  # Check if a Figure object is returned
+    assert ax.get_title() == 'Percentage of Diffusion Modes per region'
+
+    num_bars = len(fig.axes[0].patches)
+    assert num_bars == len(testing_df['region'].unique())*3
+    heights = [element.get_height() for element in fig.axes[0].patches]
+    assert np.isclose(sum(heights), len(testing_df['region'].unique()), 0.05)
