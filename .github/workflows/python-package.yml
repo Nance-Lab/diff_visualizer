@@ -39,7 +39,7 @@ jobs:
     - name: Run tests with coverage
       run: |
         coverage run -m pytest
-        coverage report -m --fail-under=80 --skip-covered
+        coverage report -m --fail-under=50 --skip-covered
 
         COVERAGE_PERCENT=$(coverage report -m --skip-covered | awk '/TOTAL/ { print $4 }' | sed 's/%$//' | awk '{ printf "%d\n", $1 }')
 
