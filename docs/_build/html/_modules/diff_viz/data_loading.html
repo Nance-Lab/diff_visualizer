@@ -350,16 +350,16 @@ document.write(`
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Checks that a pandas DataFrame has at least one row of data and contains specific columns.</span>
 <span class="sd">    </span>
-<span class="sd">    Parameters:</span>
+<span class="sd">    Parameters</span>
 <span class="sd">    -----------</span>
 <span class="sd">    df : pandas.DataFrame</span>
 <span class="sd">        The DataFrame to check.</span>
 <span class="sd">    expected_columns : list</span>
 <span class="sd">        A list of column names that the DataFrame is expected to have.</span>
 <span class="sd">        </span>
-<span class="sd">    Returns:</span>
+<span class="sd">    Returns</span>
 <span class="sd">    --------</span>
-<span class="sd">    bool</span>
+<span class="sd">    columns_present, has_data: bool</span>
 <span class="sd">        True if the DataFrame contains at least one row of data and all of the expected columns, False otherwise.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Check that all of the expected columns are present</span>
@@ -375,14 +375,14 @@ document.write(`
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Cleans a pandas DataFrame containing MPT data.</span>
 <span class="sd">    </span>
-<span class="sd">    Parameters:</span>
+<span class="sd">    Parameters</span>
 <span class="sd">    -----------</span>
 <span class="sd">    df : pandas.DataFrame</span>
 <span class="sd">        The DataFrame to clean.</span>
 <span class="sd">        </span>
-<span class="sd">    Returns:</span>
+<span class="sd">    Returns</span>
 <span class="sd">    --------</span>
-<span class="sd">    pandas.DataFrame</span>
+<span class="sd">    df: pandas.DataFrame</span>
 <span class="sd">        The cleaned DataFrame.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 

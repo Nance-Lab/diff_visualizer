@@ -350,26 +350,44 @@ document.write(`
                                     <span class="n">legend_loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="n">legend_fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">title_fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
                                     <span class="n">tick_fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Plot the percentage of diffusion modes per age using a bar chart.</span>
+<span class="sd">    Plot the percentage of diffusion modes per variable using a bar chart. Diffusion modes are Superdiffusive, Brownian,</span>
+<span class="sd">    and Subdiffusive.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        ecm (pandas.DataFrame): DataFrame containing diffusion mode data with &#39;alpha&#39; column.</span>
-<span class="sd">        label_name (str): Name of the label for the bar chart.</span>
-<span class="sd">        bar_width (float): Width of the bars in the bar chart. Default is 0.01.</span>
-<span class="sd">        figsize (tuple): Figure size (width, height) in inches. Default is (1, 4).</span>
-<span class="sd">        color_constrained (str): Color for the &#39;Subdiffusive&#39; bars. Default is &#39;#b7a57a&#39;.</span>
-<span class="sd">        color_normal (str): Color for the &#39;Brownian&#39; bars. Default is &#39;#999999&#39;.</span>
-<span class="sd">        color_directed (str): Color for the &#39;Superdiffusive&#39; bars. Default is &#39;#4b2e83&#39;.</span>
-<span class="sd">        ylim (tuple): y-axis limits. Default is (0, 1).</span>
-<span class="sd">        legend_loc (str): Location of the legend. Default is &#39;lower right&#39;.</span>
-<span class="sd">        legend_fontsize (int): Font size of the legend. Default is 8.</span>
-<span class="sd">        title_fontsize (int): Font size of the plot title. Default is 15.</span>
-<span class="sd">        tick_fontsize (int): Font size of the axis ticks. Default is 15.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">        ecm (pandas.DataFrame): </span>
+<span class="sd">            DataFrame containing diffusion mode data with &#39;alpha&#39; column.</span>
+<span class="sd">        label_name (str): </span>
+<span class="sd">            Name of the label for the bar chart.</span>
+<span class="sd">        bar_width (float): </span>
+<span class="sd">            Width of the bars in the bar chart. Default is 0.01.</span>
+<span class="sd">        figsize (tuple): </span>
+<span class="sd">            Figure size (width, height) in inches. Default is (1, 4).</span>
+<span class="sd">        color_constrained (str): </span>
+<span class="sd">            Color for the &#39;Subdiffusive&#39; bars. Default is &#39;#b7a57a&#39;.</span>
+<span class="sd">        color_normal (str): </span>
+<span class="sd">            Color for the &#39;Brownian&#39; bars. Default is &#39;#999999&#39;.</span>
+<span class="sd">        color_directed (str): </span>
+<span class="sd">            Color for the &#39;Superdiffusive&#39; bars. Default is &#39;#4b2e83&#39;.</span>
+<span class="sd">        ylim (tuple): </span>
+<span class="sd">            y-axis limits. Default is (0, 1).</span>
+<span class="sd">        legend_loc (str): </span>
+<span class="sd">            Location of the legend. Default is &#39;lower right&#39;.</span>
+<span class="sd">        legend_fontsize (int): </span>
+<span class="sd">            Font size of the legend. Default is 8.</span>
+<span class="sd">        title_fontsize (int): </span>
+<span class="sd">            Font size of the plot title. Default is 15.</span>
+<span class="sd">        tick_fontsize (int): </span>
+<span class="sd">            Font size of the axis ticks. Default is 15.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        matplotlib.figure.Figure: The generated figure.</span>
+<span class="sd">    --------</span>
+<span class="sd">        matplotlib.figure.Figure: </span>
+<span class="sd">            The generated figure.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
 
     <span class="c1"># Calculate the percentage of each diffusion mode</span>
@@ -396,26 +414,44 @@ document.write(`
                          <span class="n">legend_loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="n">legend_fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">title_fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
                          <span class="n">title_font</span><span class="o">=</span><span class="s1">&#39;Arial&#39;</span><span class="p">,</span> <span class="n">tick_fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Plot the percentage of diffusion modes per age category.</span>
+<span class="sd">    Plot the percentage of diffusion modes per variable category. Diffusion modes are Superdiffusive, Brownian,</span>
+<span class="sd">    and Subdiffusive.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        df (pandas.DataFrame): DataFrame containing diffusion mode data.</span>
-<span class="sd">        label_column (str): Column name indicating the label.</span>
-<span class="sd">        bar_width (float): Width of the bars in the bar chart. Default is 0.5.</span>
-<span class="sd">        figsize (tuple): Figure size (width, height) in inches. Default is (4, 8).</span>
-<span class="sd">        color_subdiffusive (str): Color for the &#39;Subdiffusive&#39; bars. Default is &#39;#b7a57a&#39;.</span>
-<span class="sd">        color_brownian (str): Color for the &#39;Brownian&#39; bars. Default is &#39;#999999&#39;.</span>
-<span class="sd">        color_superdiffusive (str): Color for the &#39;Superdiffusive&#39; bars. Default is &#39;#4b2e83&#39;.</span>
-<span class="sd">        ylim (tuple): y-axis limits. Default is (0, 1).</span>
-<span class="sd">        legend_loc (str): Location of the legend. Default is &#39;lower right&#39;.</span>
-<span class="sd">        legend_fontsize (int): Font size of the legend. Default is 14.</span>
-<span class="sd">        title_fontsize (int): Font size of the plot title. Default is 15.</span>
-<span class="sd">        tick_fontsize (int): Font size of the axis ticks. Default is 15.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    -----------</span>
+
+<span class="sd">        df (pandas.DataFrame): </span>
+<span class="sd">            DataFrame containing diffusion mode data.</span>
+<span class="sd">        label_column (str): </span>
+<span class="sd">            Column name indicating the label.</span>
+<span class="sd">        bar_width (float): </span>
+<span class="sd">            Width of the bars in the bar chart. Default is 0.5.</span>
+<span class="sd">        figsize (tuple): </span>
+<span class="sd">            Figure size (width, height) in inches. Default is (4, 8).</span>
+<span class="sd">        color_subdiffusive (str): </span>
+<span class="sd">            Color for the &#39;Subdiffusive&#39; bars. Default is &#39;#b7a57a&#39;.</span>
+<span class="sd">        color_brownian (str): </span>
+<span class="sd">            Color for the &#39;Brownian&#39; bars. Default is &#39;#999999&#39;.</span>
+<span class="sd">        color_superdiffusive (str): </span>
+<span class="sd">            Color for the &#39;Superdiffusive&#39; bars. Default is &#39;#4b2e83&#39;.</span>
+<span class="sd">        ylim (tuple): </span>
+<span class="sd">            y-axis limits. Default is (0, 1).</span>
+<span class="sd">        legend_loc (str): </span>
+<span class="sd">            Location of the legend. Default is &#39;lower right&#39;.</span>
+<span class="sd">        legend_fontsize (int): </span>
+<span class="sd">            Font size of the legend. Default is 14.</span>
+<span class="sd">        title_fontsize (int): </span>
+<span class="sd">            Font size of the plot title. Default is 15.</span>
+<span class="sd">        tick_fontsize (int): </span>
+<span class="sd">            Font size of the axis ticks. Default is 15.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        matplotlib.figure.Figure: The generated figure.</span>
+<span class="sd">    --------</span>
+<span class="sd">        matplotlib.figure.Figure: </span>
+<span class="sd">            The generated figure.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
 
 
