@@ -9,16 +9,16 @@ def check_mpt_data(df, expected_columns):
     """
     Checks that a pandas DataFrame has at least one row of data and contains specific columns.
     
-    Parameters:
+    Parameters
     -----------
     df : pandas.DataFrame
         The DataFrame to check.
     expected_columns : list
         A list of column names that the DataFrame is expected to have.
         
-    Returns:
+    Returns
     --------
-    bool
+    columns_present, has_data: bool
         True if the DataFrame contains at least one row of data and all of the expected columns, False otherwise.
     """
     # Check that all of the expected columns are present
@@ -34,14 +34,14 @@ def clean_mpt_data(df, features_to_keep='default', target_column=None):
     """
     Cleans a pandas DataFrame containing MPT data.
     
-    Parameters:
+    Parameters
     -----------
     df : pandas.DataFrame
         The DataFrame to clean.
         
-    Returns:
+    Returns
     --------
-    pandas.DataFrame
+    df: pandas.DataFrame
         The cleaned DataFrame.
     """
 

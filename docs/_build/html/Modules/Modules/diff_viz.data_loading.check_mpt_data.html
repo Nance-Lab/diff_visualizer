@@ -363,6 +363,22 @@ document.write(`
 <dt class="sig sig-object py" id="diff_viz.data_loading.check_mpt_data">
 <span class="sig-prename descclassname"><span class="pre">diff_viz.data_loading.</span></span><span class="sig-name descname"><span class="pre">check_mpt_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_columns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/diff_viz/data_loading.html#check_mpt_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diff_viz.data_loading.check_mpt_data" title="Permalink to this definition">#</a></dt>
 <dd><p>Checks that a pandas DataFrame has at least one row of data and contains specific columns.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>The DataFrame to check.</p>
+</dd>
+<dt><strong>expected_columns</strong><span class="classifier">list</span></dt><dd><p>A list of column names that the DataFrame is expected to have.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>columns_present, has_data: bool</dt><dd><p>True if the DataFrame contains at least one row of data and all of the expected columns, False otherwise.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
