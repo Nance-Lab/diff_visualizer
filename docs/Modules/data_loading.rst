@@ -7,6 +7,7 @@ Module with functions for loading MPT data from csv files
 .. autosummary:: 
     :toctree: Modules/
 
-    check_csv_data 
+    check_mpt_data 
+    clean_mpt_data
 
 
