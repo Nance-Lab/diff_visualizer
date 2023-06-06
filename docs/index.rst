@@ -25,7 +25,7 @@ Specifically, this package will enable users to:
    Modules/data_loading
    Modules/diffusion_modes
    Modules/msd
-   Modules/pca_viz
+   Modules/feature_distribution_plots
    Modules/utils
 
 

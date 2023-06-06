@@ -23,7 +23,7 @@ copyright = '2023, Nels Schimek, Brendan Butler'
 author = 'Nels Schimek, Brendan Butler'
 
 # The full version, including alpha/beta/rc tags
-release = '00.00.01'
+#release = '00.00.01'
 
 
 # -- General configuration ---------------------------------------------------
