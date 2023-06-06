@@ -46,4 +46,11 @@ st.markdown("""
         
     3) Geomean or Geosem data
 
+
+    ### MSD Plotting
+
+    ### Diffusion Mode Plotting
+
+    ### Feature Violin Plotting
+
 """)
