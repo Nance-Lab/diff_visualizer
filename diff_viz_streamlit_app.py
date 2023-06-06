@@ -8,7 +8,7 @@ st.header('diff_viz: Your One Stop Shop for MPT Plots!')
 
 
 st.markdown("""
-    [diff_viz](https://diff-viz.readthedocs.io/en/latest/] is a Python package that allows you to visualize and analyze your MPT data.
+    [diff_viz](https://diff-viz.readthedocs.io/en/latest/#) is a Python package that allows you to visualize and analyze your MPT data.
     This dashboard allows you to upload your data and generate plots with just a few clicks!
 
     The goal of this package is to allow researchers working with Multiple Particle Tracking (MPT) data to quickly generate informative data visualizations.
