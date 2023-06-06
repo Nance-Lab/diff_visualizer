@@ -28,4 +28,4 @@ https://nance-lab-diff-viz-diff-metadata-generator-app-3eh53p.streamlit.app/
 
 ## Documentation
 
-Full [documentation][https://diff-viz.readthedocs.io/en/latest/index.html] for diff_viz can be found on Read the Docs
+Full [documentation](https://diff-viz.readthedocs.io/en/latest/index.html) for diff_viz can be found on Read the Docs
