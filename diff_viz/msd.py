@@ -4,40 +4,11 @@ import pandas as pd
 
 import matplotlib
 import matplotlib.pyplot as plt
-from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 
 from os import listdir, getcwd, chdir
 from os.path import isfile, join
-from sklearn import linear_model
 
 import utils
-
-
-def get_msd_dose_dict(doses):
-    msd_dose_dict = {}
-    #sem_dose_dict = {}
-
-    for dose in doses:
-        msd_dose_dict[dose] = []
-        #sem_dose_dict[dose] = []
-    
-    return msd_dose_dict
-
-def get_df_dose_list(doses,geomean_df):
-    df_dose_list = []
-    #sem_dose_list = []
-    
-    for dose in doses:
-        msd_dose_df = pd.DataFrame()
-        dose_cols = [col for col in geomean_df.columns if dose in col]
-        msd_dose_df = geomean_df.filter(dose_cols, axis=1)
-        df_dose_list.append(msd_dose_df)
-        #sem_dose_df = pd.DataFrame()
-        #sem_cols = [col for col in geosem_df.columns if dose in col]
-        #sem_dose_df = geosem_df.filter(sem_cols, axis=1)
-        #sem_dose_list.append(sem_dose_df)
-        
-    return df_dose_list
 
 def msd_viz(doses,geomean_df,df_dose_list):
     count = 0
