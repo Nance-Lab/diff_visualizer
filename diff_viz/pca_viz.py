@@ -11,7 +11,11 @@ def plot_pca(pca_embeddings_df, target_column, num_points='all'):
     fig = plt.figure(figsize=(12,7))
     for unique_class in pca_embeddings_df[target_column].unique():
         print(unique_class)
+<<<<<<< HEAD
+        df = pca_embeddings_df[pca_embeddings_df[target_column] == unique_class] # We plot less points to make a cleaner figure
+=======
         df = pca_embeddings_df[pca_embeddings_df[target_column] == unique_class].sample(100) # We plot less points to make a cleaner figure
+>>>>>>> e9ea4459f035cbc4b8b8487f7ae1785bcf937d07
         x = df['Component 1']
         y = df['Component 2']
         plt.scatter(x,y, alpha=0.5, s=4, label=unique_class)#, c=colors[unique_class])
@@ -45,10 +49,10 @@ def myplot(score,coeff,labels=None, targets=None, num_points='all'):
         x = (xs[targets==uclass])*scalex
         y = (ys[targets==uclass])*scaley
         if num_points == 'all':
-            plt.scatter(x, y, alpha=0.5, s=1)
+            plt.scatter(x, y, alpha=0.5, s=1, label=uclass)
         else:
             inds = np.random.randint(0, len(x), num_points)
-            plt.scatter(x[inds], y[inds], alpha=0.5, s=1)
+            plt.scatter(x[inds], y[inds], alpha=0.5, s=1, label=uclass)
     #plt.scatter(xs * scalex,ys * scaley)#, c = y)
     for i in range((n//2), n):
         plt.arrow(0, 0, coeff[i,0], coeff[i,1],color = 'r',alpha = 0.5)
@@ -60,4 +64,6 @@ def myplot(score,coeff,labels=None, targets=None, num_points='all'):
     plt.ylim(-.6,.6)
     plt.xlabel("PC{}".format(1))
     plt.ylabel("PC{}".format(2))
-    plt.grid()
+    plt.legend(loc='lower left')
+
+    #plt.grid()
