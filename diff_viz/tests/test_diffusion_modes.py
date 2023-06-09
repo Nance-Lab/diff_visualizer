@@ -50,13 +50,13 @@ def test_plot_diffusion_modes_single_label():
 
 def test_plot_diffusion_modes():
 
-    fig = plot_diffusion_modes(testing_df, 'region')
+    fig = plot_diffusion_modes(testing_df, 'age')
     ax = fig.gca()
 
     assert isinstance(fig, plt.Figure)  # Check if a Figure object is returned
-    assert ax.get_title() == 'Percentage of Diffusion Modes per region'
+    assert ax.get_title() == 'Percentage of Diffusion Modes per age'
 
     num_bars = len(fig.axes[0].patches)
-    assert num_bars == len(testing_df['region'].unique())*3
+    assert num_bars == len(testing_df['age'].unique())*3
     heights = [element.get_height() for element in fig.axes[0].patches]
-    assert np.isclose(sum(heights), len(testing_df['region'].unique()), 0.05)
+    assert np.isclose(sum(heights), len(testing_df['age'].unique()), 0.05)
