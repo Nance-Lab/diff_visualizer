@@ -1,9 +1,18 @@
+""" 
+Module for utility functions for diff_viz and MPT data
+"""
+
+
 import os
 from os import listdir, getcwd, chdir
 from os.path import isfile, join
+<<<<<<< HEAD
 import numpy as np
+=======
+import pandas as pd
+>>>>>>> 038872553e5527178a340828291199539f810fba
 
-def get_experiment(traj_folder):
+def get_experiment(date,donor,DIV,stimulus,level):
     '''Generates a string for the Traj csv folder you're working in.
     This follows the naming convention I use, but you can omit this function and
     code in the name of the Traj csv folder (second to last cell).
