@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from diff_viz.diffusion_modes import plot_diffusion_modes_single_label, plot_diffusion_modes
-from diff_predictor import data_process
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -13,7 +12,7 @@ striatum_file = 'features_60X_Striatum_Slice2_Video1.csv'
 cortex_file = 'features_100X_OGD_Cortex_Slice2_Video1.csv'
 df_striat = pd.read_csv(testing_data_path+striatum_file)
 df_cort = pd.read_csv(testing_data_path+cortex_file)
-testing_df = data_process.generate_fullstats(testing_data_path, [striatum_file, cortex_file], ['Striatum', 'Cortex'], 'region')
+testing_df = pd.read_csv(testing_data_path+'demo_data.csv')
 
 def test_plot_diffusion_modes_single_label():
     # Create a sample DataFrame for testing
