@@ -1,6 +1,7 @@
 import os
 from os import listdir, getcwd, chdir
 from os.path import isfile, join
+import numpy as np
 
 def get_experiment(traj_folder):
     '''Generates a string for the Traj csv folder you're working in.
