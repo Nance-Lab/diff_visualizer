@@ -140,6 +140,8 @@ def get_df_dose_list(doses,geo_df):
 
 def calc_error(doses,timepoints,experiment,geomean_df):
 
+    model_system='Slice MPT'
+    data_path=get_path(model_system,experiment)
     geosem_df=get_geo_df(data_path,'geoSEM',doses,timepoints,experiment)
 
     return geosem_df
