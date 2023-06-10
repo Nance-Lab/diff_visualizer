@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from os import listdir, getcwd, chdir
 from os.path import isfile, join
 
-import utils
+from utils import get_experiment, get_path, get_csvs, get_geo_dict, get_geo_df, get_df_dose_list, calc_error
 
 def msd_viz(doses,geomean_df,geosem_df,fps):
     count=0
