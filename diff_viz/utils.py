@@ -2,28 +2,28 @@
 Module for utility functions for diff_viz and MPT data
 """
 
-
 import os
 from os import listdir, getcwd, chdir
 from os.path import isfile, join
 import numpy as np
 import pandas as pd
 
-def get_experiment(traj_folder):
+def get_experiment(date, donor, DIV, stimulus, level):
     '''Generates a string for the Traj csv folder you're working in.
     This follows the naming convention I use, but you can omit this function and
     code in the name of the Traj csv folder (second to last cell).
     '''
-    experiment=traj_folder #Title of the Traj_csv folder without '_Traj_csv'
+    
+    experiment=date+'_'+donor+'_'+DIV+'_'+stimulus+'_'+level #Title of the Traj_csv folder without '_Traj_csv'
     
     return experiment
 
-def get_path(model_system,experiment):
+def get_path(model,experiment):
     '''Generates the data path of the folder containing the trajectories relevant to the specified experiment
     and model system.'''
 
-    base_path=os.getcwd()
-    data_path=base_path+'/'+f'{model_system}'+'/'+experiment+'/'
+    data_path=f'/Users/brendanbutler/Desktop/Nance Lab/Data/diff_classifier/notebooks/development/MPT_Data/{model} MPT/{experiment}_Traj_csv/'
+
 
     return data_path
 
@@ -140,8 +140,8 @@ def get_df_dose_list(doses,geo_df):
 
 def calc_error(doses,timepoints,experiment,geomean_df):
 
-    model_system='Slice MPT'
-    data_path=get_path(model_system,experiment)
-    geosem_df=get_geo_df(data_path,'geoSEM',doses,timepoints,experiment)
-
-    return geosem_df
+   model='Slice MPT'
+   data_path=get_path(model,experiment)
+   geosem_df=get_geo_df(data_path,'geoSEM',doses,timepoints,experiment)
+   
+   return geosem_df
