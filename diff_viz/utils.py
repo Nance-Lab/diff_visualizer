@@ -9,7 +9,7 @@ from os.path import isfile, join
 import numpy as np
 import pandas as pd
 
-def get_experiment(date,donor,DIV,stimulus,level):
+def get_experiment(traj_folder):
     '''Generates a string for the Traj csv folder you're working in.
     This follows the naming convention I use, but you can omit this function and
     code in the name of the Traj csv folder (second to last cell).
