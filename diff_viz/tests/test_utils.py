@@ -16,8 +16,8 @@ def test_get_csvs(file_path=file_path):
     
     geo_list = get_csvs(file_path, filetype='geomean')
     assert len(geo_list) == 2
-    assert geo_list[0] == 'geomean_P17_1h_OGD_1d_40nm_slice_1_cortex_vid_1.csv'
-    assert geo_list[1] == 'geomean_P17_NT_1d_40nm_slice_1_cortex_vid_1.csv'
+    assert geo_list[1] == 'geomean_P17_1h_OGD_1d_40nm_slice_1_cortex_vid_1.csv'
+    assert geo_list[0] == 'geomean_P17_NT_1d_40nm_slice_1_cortex_vid_1.csv'
 
 def test_get_geo_dict(file_path=file_path):
 
