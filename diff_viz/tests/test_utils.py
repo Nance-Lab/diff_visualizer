@@ -1,53 +1,64 @@
 from diff_viz.utils import *
 import pytest
 
-class TestGetExperiment:
-    """
-    Test class for the get_experiment function.
+file_path = 'diff_viz/tests/testing_data/'
 
-    This class contains tests for the get_experiment function, which generates a string
-    representing the title of a Traj csv folder based on input parameters.
+def test_get_experiment():
+    date = '2019_01_01'
+    donor = 'P17F'
+    DIV = '3DIV'
+    stimulus = 'OGD'
+    level = '0.5h'
+    experiment = get_experiment(date, donor, DIV, stimulus, level)
+    assert experiment == '2019_01_01_P17F_3DIV_OGD_0.5h'
 
-    Assumptions:
-    - The input date, donor, DIV, stimulus, and level parameters are all strings.
-    - The input parameters do not contain any invalid characters for folder naming conventions.
+def test_get_csvs(file_path=file_path):
+    
+    geo_list = get_csvs(file_path, filetype='geomean')
+    assert len(geo_list) == 2
+    assert geo_list[0] == 'geomean_P17_1h_OGD_1d_40nm_slice_1_cortex_vid_1.csv'
+    assert geo_list[1] == 'geomean_P17_NT_1d_40nm_slice_1_cortex_vid_1.csv'
 
-    Dependencies:
-    - The get_experiment function must be defined in the same module as this class.
+def test_get_geo_dict(file_path=file_path):
 
-    Limitations:
-    - This class only tests a limited range of input parameter values.
-    - Additional tests may be needed to ensure full coverage of the get_experiment function.
+    geo_list = get_csvs(file_path, filetype='geomean')
+    doses = ['1h', 'NT']
+    geo_dict = get_geo_dict(geo_list, doses)
+    assert len(geo_dict) == 2
+    assert '1h' in geo_dict.keys()
+    assert 'NT' in geo_dict.keys()
+    assert geo_dict['1h'][0] == ['geomean_P17_1h_OGD_1d_40nm_slice_1_cortex_vid_1.csv']
+    assert geo_dict['NT'][0] == ['geomean_P17_NT_1d_40nm_slice_1_cortex_vid_1.csv']
 
-    Usage:
-    - Create an instance of the TestGetExperiment class to run the tests.
-    - Call the pytest.main() method to run the tests using the pytest framework.
-    """
+def test_get_geo_df_geomean(file_path=file_path):
 
-    def test_get_experiment(self):
-        date = "2023-04-26"
-        donor = "John"
-        DIV = "2"
-        stimulus = "light"
-        level = "high"
+    #test geomean
+    geo_df = get_geo_df(file_path, filetype='geomean', doses=['1h', 'NT'], timepoints=['1d'], experiment=None)
+    assert geo_df.shape == (650, 2)
+    assert geo_df.columns[0] == '1h_1d'
+    assert geo_df.columns[1] == 'NT_1d'
 
-        result = get_experiment(date, donor, DIV, stimulus, level)
-        expected = "2023-04-26_John_2_light_high"
 
-        assert result == expected
+def test_get_geo_df_geoSEM(file_path=file_path):
+    #test geosem
+    geo_df = get_geo_df(file_path, filetype='geoSEM', doses=['1h', 'NT'], timepoints=['1d'], experiment=None)
+    assert geo_df.shape == (650, 2)
+    assert geo_df.columns[0] == '1h_1d'
+    assert geo_df.columns[1] == 'NT_1d'
 
-    def test_long_input(self):
-        date = "2023-04-26" * 1000
-        donor = "John"
-        DIV = "2"
-        stimulus = "light"
-        level = "high"
 
-        result = get_experiment(date, donor, DIV, stimulus, level)
-        expected = date + '_John_2_light_high'
+def test_get_df_dose_list(file_path = file_path):
 
-        assert result == expected
+    # test geomean
+    df_dose_list_geomean = get_df_dose_list(['1h', 'NT'], get_geo_df(file_path, filetype='geomean', doses=['1h', 'NT'], timepoints=['1d'], experiment=None))
+    assert df_dose_list_geomean[0].shape == (650, 1)
+    assert df_dose_list_geomean[1].shape == (650, 1)
+    assert df_dose_list_geomean[0].columns[0] == '1h_1d'
+    assert df_dose_list_geomean[1].columns[0] == 'NT_1d'
 
-if __name__ == '__main__':
-    pytest.main()
-
+    # test geosem
+    df_dose_list_geosem = get_df_dose_list(['1h', 'NT'], get_geo_df(file_path, filetype='geoSEM', doses=['1h', 'NT'], timepoints=['1d'], experiment=None))
+    assert df_dose_list_geosem[0].shape == (650, 1)
+    assert df_dose_list_geosem[1].shape == (650, 1)
+    assert df_dose_list_geosem[0].columns[0] == '1h_1d'
+    assert df_dose_list_geosem[1].columns[0] == 'NT_1d'

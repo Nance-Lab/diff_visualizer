@@ -13,16 +13,15 @@ def get_experiment(date, donor, DIV, stimulus, level):
     This follows the naming convention I use, but you can omit this function and
     code in the name of the Traj csv folder (second to last cell).
     '''
-    
     experiment=date+'_'+donor+'_'+DIV+'_'+stimulus+'_'+level #Title of the Traj_csv folder without '_Traj_csv'
     
     return experiment
 
-def get_path(model,experiment):
-    '''Generates the data path of the folder containing the trajectories relevant to the specified experiment
-    and model system.'''
+# def get_path(model,experiment):
+#     '''Generates the data path of the folder containing the trajectories relevant to the specified experiment
+#     and model system.'''
 
-    data_path=f'/Users/brendanbutler/Desktop/Nance Lab/Data/diff_classifier/notebooks/development/MPT_Data/{model} MPT/{experiment}_Traj_csv/'
+#     data_path=f'/Users/brendanbutler/Desktop/Nance Lab/Data/diff_classifier/notebooks/development/MPT_Data/{model} MPT/{experiment}_Traj_csv/'
 
 
     return data_path
@@ -47,19 +46,6 @@ def get_geo_dict(geo_list,doses):
         geo_dict[dose].append(geo_dose)
     
     return geo_dict
-
-def get_df_dose_list(doses,geo_df):
-    '''Generates list of column headers for plotting purposes.
-    '''
-    df_dose_list = []
-    
-    for dose in doses:
-        dose_df = pd.DataFrame()
-        dose_cols = [col for col in geo_df.columns if dose in col]
-        dose_df = geo_df.filter(dose_cols, axis=1)
-        df_dose_list.append(dose_df)
-        
-    return df_dose_list
 
 def get_geo_df(data_path,filetype,doses,timepoints,experiment):
     '''Constructs a dataframe of MSD values for every combination of dose/time.
@@ -138,10 +124,10 @@ def get_df_dose_list(doses,geo_df):
         
     return df_dose_list
 
-def calc_error(doses,timepoints,experiment,geomean_df):
+# def calc_error(doses,timepoints,experiment,geomean_df):
 
-   model='Slice MPT'
-   data_path=get_path(model,experiment)
-   geosem_df=get_geo_df(data_path,'geoSEM',doses,timepoints,experiment)
+#    model='Slice MPT'
+#    data_path=get_path(model,experiment)
+#    geosem_df=get_geo_df(data_path,'geoSEM',doses,timepoints,experiment)
    
-   return geosem_df
+#    return geosem_df
