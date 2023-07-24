@@ -24,7 +24,7 @@ def get_experiment(date, donor, DIV, stimulus, level):
 #     data_path=f'/Users/brendanbutler/Desktop/Nance Lab/Data/diff_classifier/notebooks/development/MPT_Data/{model} MPT/{experiment}_Traj_csv/'
 
 
-    return data_path
+    #return data_path
 
 def get_csvs(data_path,filetype):
     '''Returns the master list of csv files in the Traj csv folder, geoMean or geoSEM files depending on user input.
