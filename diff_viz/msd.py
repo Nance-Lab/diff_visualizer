@@ -1,3 +1,7 @@
+"""
+Visualize mean-squared displacement (MSD) data from diffusivity experiments.
+ """
+
 import os
 import numpy as np
 import pandas as pd
@@ -11,6 +15,26 @@ from os.path import isfile, join
 from utils import get_experiment, get_path, get_csvs, get_geo_dict, get_geo_df, get_df_dose_list, calc_error
 
 def msd_viz(doses,geomean_df,geosem_df,fps):
+    """
+    Visualize MSD data from diffusivity experiments.
+    
+    Parameters
+    ----------
+        doses (list):
+            List of doses used in the experiment.
+        geomean_df (pandas.DataFrame):
+            DataFrame containing the mean-squared displacement data.
+        geosem_df (pandas.DataFrame):
+            DataFrame containing the standard error of the mean-squared displacement data.
+        fps (int):
+            Frames per second of the experiment.
+
+    Returns
+    -------
+        fig (matplotlib.figure.Figure):
+            Figure containing the MSD data.
+
+    """
     count=0
     msd_dose_list=get_df_dose_list(doses,geomean_df)
     sem_dose_list=get_df_dose_list(doses,geosem_df)
@@ -53,4 +77,4 @@ def msd_viz(doses,geomean_df,geosem_df,fps):
                     axes[c].set_ylabel('Mean-squared displacement (μ$m^2$)',fontsize=16)
     
                 count+=1
-    return
+    return fig
