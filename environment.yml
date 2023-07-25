@@ -11,5 +11,7 @@ dependencies:
   - jupyter
   - ipykernel
   - numpydoc==1.5.0
+  - diff_predictor
+  - diff_classifier
   #- streamlit_tags
   #- streamlit==1.9.2

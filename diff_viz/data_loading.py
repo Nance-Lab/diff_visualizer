@@ -4,6 +4,7 @@ Module for ensuring the validity of uploaded CSV files.
 
 import pandas as pd
 import numpy as np
+import diff_predictor
 
 def check_mpt_data(df, expected_columns):
     """
@@ -101,3 +102,35 @@ def clean_mpt_data(df, features_to_keep='default', target_column=None):
     # This may also fill NA target columns with 0, which may not be desired
     
     return df
+
+def combine_csvs(file_list, class_list, features_to_keep='default'):
+    """
+    Combines multiple CSV files into a single DataFrame.
+    
+    Parameters
+    -----------
+    file_list : list
+        A list of file paths to the CSV files to combine.
+    features_to_keep : list
+        A list of column names to keep in the combined DataFrame.
+    target_column : str
+        The name of the target column to keep in the combined DataFrame.
+
+        
+    Returns
+    --------
+    df: pandas.DataFrame
+        The combined DataFrame.
+    """
+
+    df_list = []
+    for file in file_list:
+        df = pd.read_csv(file)
+        for unique_class in class_list:
+            if unique_class in file:
+                df['class'] = unique_class
+                df_list.append(df)
+    full_df = pd.concat(df_list)
+    full_df = clean_mpt_data(full_df, features_to_keep=features_to_keep, target_column='class')
+
+    return full_df

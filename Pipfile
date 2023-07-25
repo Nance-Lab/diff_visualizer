@@ -8,6 +8,7 @@ streamlit-tags = "*"
 streamlit = "*"
 pandas = "*"
 numpy = "*"
+matplotlib = "*"
 
 [dev-packages]
 streamlit = "*"

@@ -6,7 +6,7 @@ import numpy as np
 from hypothesis import HealthCheck, given, settings, strategies as st
 from hypothesis.extra.pandas import columns, column, data_frames, range_indexes
 
-from diff_viz.data_loading import check_mpt_data, clean_mpt_data
+from diff_viz.data_loading import check_mpt_data, clean_mpt_data, combine_csvs
 
 
 np.random.seed(1234)
@@ -67,3 +67,32 @@ def test_clean_mpt_data(df):
     else_df = clean_mpt_data(df, features_to_keep=['alpha', 'asymmetry1', 'Mean MSD_ratio', 'AR', 'Mean Deff1'], target_column='target')
     assert else_df.shape[1] == 6 #check that the function returns a DataFrame with 6 columns
     assert all(element in else_df.columns for element in ['alpha', 'asymmetry1', 'Mean MSD_ratio', 'AR', 'Mean Deff1', 'target']) #check that the function returns a DataFrame with 6 columns
+
+
+def test_combine_csvs():
+    file_list = [
+        'diff_viz/tests/testing_data/features_P14_40nm_s1_v1.csv',
+        'diff_viz/tests/testing_data/features_P14_40nm_s1_v2.csv',
+        'diff_viz/tests/testing_data/features_P14_40nm_s1_v3.csv',
+        'diff_viz/tests/testing_data/features_P35_brain_2_slice_1_vid_1.csv',
+        'diff_viz/tests/testing_data/features_P35_brain_2_slice_1_vid_2.csv',
+        'diff_viz/tests/testing_data/features_P35_brain_2_slice_1_vid_3.csv',
+        'diff_viz/tests/testing_data/features_P70_40nm_s1_v1.csv',
+        'diff_viz/tests/testing_data/features_P70_40nm_s1_v2.csv',
+        'diff_viz/tests/testing_data/features_P70_40nm_s1_v3.csv',
+    ]
+
+    def helper_func():
+        tot_len = 0
+        for file in file_list:
+            clean_df = clean_mpt_data(pd.read_csv(file))
+            tot_len += len(clean_df)
+        return tot_len
+
+    class_list = ['P14', 'P35', 'P70']
+
+    df = combine_csvs(file_list, class_list)
+
+    assert len(df) == helper_func()
+    assert len(df.columns) == 33
+    assert set(['P14', 'P35', 'P70']).issubset(df['class'].unique())

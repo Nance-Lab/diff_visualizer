@@ -26,7 +26,10 @@ st.header('File Uploader')
 file_opts = st.sidebar.expander('File Options', expanded=True)
 
 # create file uploader
-uploaded_file = st.file_uploader("Upload CSV", type="csv")
+uploaded_files = st.file_uploader("Upload CSV",
+                                 type="csv",
+                                 accept_multiple_files=True,
+                                 key='file_uploader')
 
 ftype_list = ['MSD Trajectory Data', 'Trajectory Features Data', 'Geomean or Geosem Data']
 file_type = file_opts.radio(label="Select data type for upload", options = ftype_list,
@@ -35,9 +38,9 @@ file_type = file_opts.radio(label="Select data type for upload", options = ftype
 
 
 # check if file has been uploaded
-if uploaded_file is not None:
+if uploaded_files is not None:
     # check if the file has real data and has the specified columns
-    df = pd.read_csv(uploaded_file)
+    df = pd.read_csv(uploaded_files)
     if data_loading.check_mpt_data(df, ['alpha']):
         # display the dataframe
         st.write(df)
