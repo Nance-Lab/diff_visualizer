@@ -4,7 +4,7 @@ Module for ensuring the validity of uploaded CSV files.
 
 import pandas as pd
 import numpy as np
-import diff_predictor
+#import diff_predictor
 
 def check_mpt_data(df, expected_columns):
     """

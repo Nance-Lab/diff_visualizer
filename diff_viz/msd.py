@@ -12,7 +12,81 @@ import matplotlib.pyplot as plt
 from os import listdir, getcwd, chdir
 from os.path import isfile, join
 
-from utils import get_experiment, get_path, get_csvs, get_geo_dict, get_geo_df, get_df_dose_list, calc_error
+from diff_utils import get_experiment, get_path, get_csvs, get_geo_dict, get_geo_df, get_df_dose_list, calc_error
+
+def plot_individual_msds(csv, x_range=100, y_range=20, umppx=0.16, fps=100.02, alpha=0.1,
+                          figsize=(10, 10), subset=False, size=1000,
+                         dpi=300):
+    """
+    Plot MSDs of trajectories and the geometric average.
+
+    Parameters
+    ----------
+    prefix: string
+        Prefix of file name to be plotted e.g. features_P1.csv prefix is P1.
+    x_range: float64 or int
+        Desire x range of graph.
+    y_range: float64 or int
+        Desire y range of graph.
+    fps: float64
+        Frames per second of video.
+    umppx: float64
+        Resolution of video in microns per pixel.
+    alpha: float64
+        Transparency factor.  Between 0 and 1.
+    upload: boolean
+        True if you want to upload to s3.
+
+    Returns
+    -------
+    geo_mean: numpy array
+        Geometric mean of trajectory MSDs at all time points.
+    geo_SEM: numpy array
+        Geometric standard errot of trajectory MSDs at all time points.
+
+    """
+
+    merged = csv
+
+    fig = plt.figure(figsize=figsize)
+    particles = int(max(merged['Track_ID']))
+
+    if particles < size:
+        size = particles - 1
+    else:
+        pass
+
+    frames = int(max(merged['Frame']))
+
+    y = merged['Y']#.values.reshape((particles+1, frames+1))*umppx*umppx
+    x = merged['X']#.values.reshape((particles+1, frames+1))/fps
+#     for i in range(0, particles+1):
+#         y[i, :] = merged.loc[merged.Track_ID == i, 'MSDs']*umppx*umppx
+#         x = merged.loc[merged.Track_ID == i, 'Frame']/fps
+
+    particles = np.linspace(0, particles, particles-1).astype(int)
+    if subset:
+        particles = np.random.choice(particles, size=size, replace=False)
+
+    y = np.zeros((particles.shape[0], frames+1))
+    for idx, val in enumerate(particles):
+        y[idx, :] = merged.loc[merged.Track_ID == val, 'MSDs']*umppx*umppx
+        x = merged.loc[merged.Track_ID == val, 'Frame']/fps
+        plt.plot(x, y[idx, :], 'k', alpha=alpha)
+
+    geo_mean = np.nanmean(ma.log(y), axis=0)
+    geo_SEM = stats.sem(ma.log(y), axis=0, nan_policy='omit')
+    plt.plot(x, np.exp(geo_mean), 'k', linewidth=4)
+    plt.plot(x, np.exp(geo_mean-geo_SEM), 'k--', linewidth=2)
+    plt.plot(x, np.exp(geo_mean+geo_SEM), 'k--', linewidth=2)
+    plt.xlim(0, x_range)
+    plt.ylim(0, y_range)
+    plt.xlabel('Tau (s)', fontsize=25)
+    plt.ylabel(r'Mean Squared Displacement ($\mu$m$^2$)', fontsize=25)
+
+
+    
+    return geo_mean, geo_SEM
 
 def msd_viz(doses,geomean_df,geosem_df,fps):
     """

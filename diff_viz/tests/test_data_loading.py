@@ -3,32 +3,11 @@ This file contains unit tests for the data_loading module.
 """
 import pandas as pd
 import numpy as np
-from hypothesis import HealthCheck, given, settings, strategies as st
-from hypothesis.extra.pandas import columns, column, data_frames, range_indexes
-
 from diff_viz.data_loading import check_mpt_data, clean_mpt_data, combine_csvs
+from hypothesis import HealthCheck, given, settings, strategies as st
+from diff_viz.tests.hypothesis_util_functions import features_dataframe
 
-
-np.random.seed(1234)
-param = {}
-categories = ['alpha', 'D_fit', 'kurtosis', 'asymmetry1', 'asymmetry2',
-            'asymmetry3', 'AR', 'elongation', 'boundedness', 'fractal_dim',
-            'trappedness', 'efficiency', 'straightness', 'MSD_ratio',
-            'frames', 'Deff1', 'Deff2', 'angle_mean', 'angle_mag_mean',
-            'angle_var', 'dist_tot', 'dist_net', 'progression',
-            'Mean alpha', 'Mean D_fit', 'Mean kurtosis', 'Mean asymmetry1',
-            'Mean asymmetry2', 'Mean asymmetry3', 'Mean AR',
-            'Mean elongation', 'Mean boundedness', 'Mean fractal_dim',
-            'Mean trappedness', 'Mean efficiency', 'Mean straightness',
-            'Mean MSD_ratio', 'Mean Deff1', 'Mean Deff2']
-
-
-data_cols = columns(names_or_number=categories, dtype=float, elements=st.floats())
-position_cols = columns(names_or_number=['X', 'Y'], dtype=float, elements=st.floats(min_value=0.0, max_value=2048.0))
-target_col = column(name='target', dtype=int, elements=st.integers(min_value=0, max_value=20)) #up to twenty unique targets
-
-df = data_frames(columns=data_cols + position_cols + [target_col], index=range_indexes(min_size=10))
-
+df = features_dataframe()
 
 @given(df)
 @settings(suppress_health_check=[HealthCheck.large_base_example, HealthCheck.too_slow])
@@ -36,7 +15,7 @@ def test_check_mpt_data(df):
     # Create a DataFrame with the expected columns and data
 
 
-    expected_columns = categories
+    expected_columns = df.columns
 
     # Test the function with the expected DataFrame
     assert check_mpt_data(df, expected_columns=expected_columns) is True

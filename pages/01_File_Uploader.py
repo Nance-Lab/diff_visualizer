@@ -38,7 +38,7 @@ uploaded_files = file_opts.file_uploader("Upload CSV",
                                  accept_multiple_files=True,)
                                  
 
-ftype_list = ['MSD Trajectory Data', 'Trajectory Features Data', 'Geomean or Geosem Data']
+ftype_list = [None, 'MSD Trajectory Data', 'Trajectory Features Data', 'Geomean or Geosem Data']
 file_type = file_opts.radio(label="Select data type for upload", options = ftype_list,
                              index = ftype_list.index(st.session_state['file_type']))
 ss.save_state(dict(file_type = file_type))
@@ -67,13 +67,17 @@ else:
 # ## 3. have files uploaded and using demo
 # ## 4. no files uploaded and no demo
 
+# Condition 1: have files uploaded and not using demo
 if st.session_state['df_in'] is not None and st.session_state['demo'] is False:
+    #st.write('Condition 1 is active')
     pass
 
+# Condition 2: no files uploaded and using demo
 elif st.session_state['df_in'] is None and st.session_state['demo'] is True:
+    #st.write('Condition 2 is active')
     demo_datasets = {
         'MSD Trajectory Data': 'diff_viz/tests/testing_data/msd_P17_1h_OGD_1d_40nm_slice_1_cortex_vid_1.csv',
-        'Trajectory Features Data': 'diff_viz/tests/testing_data/features_P14_40nm_s1_v1.csv',
+        'Trajectory Features Data': 'diff_viz/tests/testing_data/demo_data.csv',
         'Geomean or Geosem Data': 'diff_viz/tests/testing_data/geomean_P17_NT_1d_40nm_slice_1_cortex_vid_1.csv',
     }
 
@@ -87,14 +91,19 @@ elif st.session_state['df_in'] is None and st.session_state['demo'] is True:
         df = pd.read_csv(demo_datasets['Geomean or Geosem Data'])
         st.session_state['df_in'] = df
         
-
+# Condition 3: have files uploaded and using demo
 elif st.session_state['df_in'] is not None and st.session_state['demo'] is True:
+    #st.write('Condition 3 is active')
     pass
 
+# Condition 4: no files uploaded and no demo
 else:
-    pass
+    #st.write('Condition 4 is active')
+    st.write('Please upload a valid CSV file with the correct columns.')
     
-view_df = file_opts.checkbox("View demo/uploaded MPT dataset", value = st.session_state['view_df'], on_change=ss.binaryswitch, args=('view_df', ))
+view_df = file_opts.checkbox("View demo/uploaded MPT dataset", 
+                             value = st.session_state['view_df'], 
+                             on_change=ss.binaryswitch, args=('view_df', ))
 
 if view_df:
     if st.session_state['demo']:
