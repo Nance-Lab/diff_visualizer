@@ -13,3 +13,4 @@ hypothesis==6.75.9
 pydata-sphinx-theme
 diff_predictor
 diff_classifier
+scipy
