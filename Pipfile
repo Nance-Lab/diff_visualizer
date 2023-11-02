@@ -9,6 +9,8 @@ streamlit = "*"
 pandas = "*"
 numpy = "*"
 matplotlib = "*"
+scipy = "*"
+seaborn = "*"
 
 [dev-packages]
 streamlit = "*"
