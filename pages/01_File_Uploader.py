@@ -9,11 +9,12 @@ from io import BytesIO
 ######################################### SESSION STATES ##################################################
 st.session_state.update(st.session_state)
 ss.initialise_state(state_dict = {'file_type': 'MSD Trajectory Data',
-                                   'df_in': None,
+                                   'df_in': False,
                                    'demo': False,
                                    'view_df': False,
                                    'data_dict': None,
-                                   
+                                   'num_conditions': None,
+                                   'conditions_list': None,
                                    })
 
 # st.session_state.update(st.session_state)
@@ -34,6 +35,7 @@ st.header('File Uploader')
 st.write('How many different conditions do you have?', help='A condition is a set of data that you want to compare. For example, if you have 3 different doses of a drug and a control, then you have 4 conditions.')
 st.info('A condition is a set of data that you want to compare. For example, if you have 3 different doses of a drug and a control, then you have 4 conditions. Currently, the maximum number of conditions is 10. Please contact the developer if you need more.', icon="ℹ️")
 num_conditions = st.number_input('Number of conditions', min_value=1, max_value=10, value=1, step=1, help='Please enter a number between 1 and 10')
+st.session_state['num_conditions'] = num_conditions
 if num_conditions == 10:
     st.warning('Currently, the maximum number of conditions is 10. Please contact the developer if you need more.', icon="🚨")
 
@@ -131,7 +133,7 @@ if st.session_state['df_in'] is not None and st.session_state['demo'] is False:
     pass
 
 # Condition 2: no files uploaded and using demo
-elif st.session_state['df_in'] is None and st.session_state['demo'] is True:
+elif st.session_state['df_in'] is False and st.session_state['demo'] is True:
     #st.write('Condition 2 is active')
     demo_datasets = {
         'MSD Trajectory Data': 'diff_viz/tests/testing_data/msd_P17_1h_OGD_1d_40nm_slice_1_cortex_vid_1.csv',
@@ -140,14 +142,14 @@ elif st.session_state['df_in'] is None and st.session_state['demo'] is True:
     }
 
     if st.session_state['file_type'] == 'MSD Trajectory Data':
-        df = pd.read_csv(demo_datasets['MSD Trajectory Data'])
-        st.session_state['df_in'] = df
+        demo_df = pd.read_csv(demo_datasets['MSD Trajectory Data'])
+        st.session_state['df_in'] = True
     elif st.session_state['file_type'] == 'Trajectory Features Data':
-        df = pd.read_csv(demo_datasets['Trajectory Features Data'])
-        st.session_state['df_in'] = df
+        demo_df = pd.read_csv(demo_datasets['Trajectory Features Data'])
+        st.session_state['df_in'] = True
     else:
-        df = pd.read_csv(demo_datasets['Geomean or Geosem Data'])
-        st.session_state['df_in'] = df
+        demo_df = pd.read_csv(demo_datasets['Geomean or Geosem Data'])
+        st.session_state['df_in'] = True
         
 # Condition 3: have files uploaded and using demo
 elif st.session_state['data_dict'] is not None and st.session_state['demo'] is True:
@@ -166,6 +168,7 @@ view_df = file_opts.checkbox("View demo/uploaded MPT dataset",
 if view_df:
     if st.session_state['demo']:
         st.write('Demo dataset:')
+        st.write(demo_df)
     elif num_conditions == 1:
         st.write('Uploaded dataset:')
         st.write(st.session_state['data_dict'][conditions_list[0]])
