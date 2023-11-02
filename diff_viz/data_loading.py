@@ -134,3 +134,12 @@ def combine_csvs(file_list, class_list, features_to_keep='default'):
     full_df = clean_mpt_data(full_df, features_to_keep=features_to_keep, target_column='class')
 
     return full_df
+
+def concatenate_csv_files(uploaded_files):
+    dfs = []
+    for uploaded_file in uploaded_files:
+        df = pd.read_csv(uploaded_file)
+        dfs.append(df)
+
+    concatenated_df = pd.concat(dfs, ignore_index=True)
+    return concatenated_df

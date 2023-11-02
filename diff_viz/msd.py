@@ -1,20 +1,21 @@
 """
 Visualize mean-squared displacement (MSD) data from diffusivity experiments.
  """
-
+import altair as alt
+import plotly.express as px
 import os
 import numpy as np
 import pandas as pd
-
-import matplotlib
+import scipy.stats as stats
+import numpy.ma as ma
 import matplotlib.pyplot as plt
 
 from os import listdir, getcwd, chdir
 from os.path import isfile, join
 
-from diff_utils import get_experiment, get_path, get_csvs, get_geo_dict, get_geo_df, get_df_dose_list, calc_error
+#from diff_utils import get_experiment, get_path, get_csvs, get_geo_dict, get_geo_df, get_df_dose_list, calc_error
 
-def plot_individual_msds(csv, x_range=100, y_range=20, umppx=0.16, fps=100.02, alpha=0.1,
+def plot_individual_msds(df, x_range=10, y_range=100, umppx=0.16, fps=100.02, alpha=0.1,
                           figsize=(10, 10), subset=False, size=1000,
                          dpi=300):
     """
@@ -46,7 +47,7 @@ def plot_individual_msds(csv, x_range=100, y_range=20, umppx=0.16, fps=100.02, a
 
     """
 
-    merged = csv
+    merged = df
 
     fig = plt.figure(figsize=figsize)
     particles = int(max(merged['Track_ID']))
@@ -83,10 +84,128 @@ def plot_individual_msds(csv, x_range=100, y_range=20, umppx=0.16, fps=100.02, a
     plt.ylim(0, y_range)
     plt.xlabel('Tau (s)', fontsize=25)
     plt.ylabel(r'Mean Squared Displacement ($\mu$m$^2$)', fontsize=25)
+    plt.xticks(fontsize=20)
+    plt.yticks(fontsize=20)
+    plt.tight_layout()
+    plt.show()
+    return fig
 
+def plot_individual_msds_altair(df, x_range=10, y_range=100, umppx=0.16, fps=100.02, alpha=0.1,
+                               figsize=(10, 10), subset=False, size=1000, dpi=300):
+    merged = df
 
+    particles = int(max(merged['Track_ID']))
+
+    if particles < size:
+        size = particles - 1
+
+    frames = int(max(merged['Frame']))
+
+    y_values = []
+    x_values = []
+    particles = np.linspace(0, particles, particles - 1).astype(int)
+    if subset:
+        particles = np.random.choice(particles, size=size, replace=False)
+
+    for idx, val in enumerate(particles):
+        y_vals = merged.loc[merged.Track_ID == val, 'MSDs'] * umppx * umppx
+        x_vals = merged.loc[merged.Track_ID == val, 'Frame'] / fps
+        y_values.extend(y_vals)
+        x_values.extend(x_vals)
+
+    data = pd.DataFrame({'x': x_values, 'y': y_values})
+
+    chart = alt.Chart(data).mark_line(opacity=alpha).encode(
+        x=alt.X('x:Q', title='Tau (s)', scale=alt.Scale(domain=(0, x_range))),
+        y=alt.Y('y:Q', title='Mean Squared Displacement (µm^2)', scale=alt.Scale(domain=(0, y_range)))
+    )
+
+    # Calculate geometric mean and SEM
+    y_log = np.log(y_values)
+    geo_mean = np.exp(np.nanmean(y_log))
+    geo_SEM = np.exp(stats.sem(y_log))
+
+    # Plot the geometric mean and SEM as horizontal lines
+    chart_mean = alt.Chart(pd.DataFrame({'x': [0, x_range], 'y': [geo_mean, geo_mean]})).mark_rule().encode(
+        y=alt.Y('y:Q', title='Geo Mean', scale=alt.Scale(domain=(0, y_range))),
+        color=alt.value('black'),
+        size=alt.value(1)
+    )
+
+    chart_sem = alt.Chart(pd.DataFrame({'x': [0, x_range], 'y': [geo_mean - geo_SEM, geo_mean - geo_SEM]})).mark_rule().encode(
+        y=alt.Y('y:Q', title='Geo SEM', scale=alt.Scale(domain=(0, y_range))),
+        color=alt.value('black'),
+        size=alt.value(1),
+        strokeDash=alt.value([3, 3])
+    )
+
+    chart_sem += alt.Chart(pd.DataFrame({'x': [0, x_range], 'y': [geo_mean + geo_SEM, geo_mean + geo_SEM]})).mark_rule().encode(
+        y=alt.Y('y:Q', title='Geo SEM', scale=alt.Scale(domain=(0, y_range))),
+        color=alt.value('black'),
+        size=alt.value(1),
+        strokeDash=alt.value([3, 3])
+    )
+
+    combined_chart = chart + chart_mean + chart_sem
+    combined_chart = combined_chart.properties(
+        width=figsize[0] * dpi / 100,
+        height=figsize[1] * dpi / 100
+    ).configure_axis(
+        labelFontSize=20,
+        titleFontSize=25
+    ).configure_title(fontSize=25)
     
-    return geo_mean, geo_SEM
+    return combined_chart
+
+def plot_individual_msds_plotly(df, x_range=10, y_range=100, umppx=0.16, fps=100.02, alpha=0.1,
+                               figsize=(10, 10), subset=False, size=1000, dpi=300):
+    merged = df
+
+    particles = int(max(merged['Track_ID']))
+
+    if particles < size:
+        size = particles - 1
+
+    frames = int(max(merged['Frame']))
+
+    y_values = []
+    x_values = []
+    particles = np.linspace(0, particles, particles - 1).astype(int)
+    if subset:
+        particles = np.random.choice(particles, size=size, replace=False)
+
+    for idx, val in enumerate(particles):
+        y_vals = merged.loc[merged.Track_ID == val, 'MSDs'] * umppx * umppx
+        x_vals = merged.loc[merged.Track_ID == val, 'Frame'] / fps
+        y_values.extend(y_vals)
+        x_values.extend(x_vals)
+
+    data = pd.DataFrame({'x': x_values, 'y': y_values})
+
+    # Create a scatter plot for the trajectories
+    fig = px.scatter(data, x='x', y='y', opacity=alpha)
+    
+    # Calculate geometric mean and SEM
+    y_log = np.log(y_values)
+    geo_mean = np.exp(np.nanmean(y_log))
+    geo_SEM = np.exp(stats.sem(y_log))
+
+    # Add geometric mean and SEM as horizontal lines
+    fig.add_hline(y=geo_mean, line_dash="dot", line_width=3, line_color="black")
+    fig.add_hline(y=geo_mean - geo_SEM, line_dash="dot", line_width=1, line_color="black")
+    fig.add_hline(y=geo_mean + geo_SEM, line_dash="dot", line_width=1, line_color="black")
+    
+    # Update layout and axes
+    fig.update_layout(
+        xaxis_title='Tau (s)',
+        yaxis_title='Mean Squared Displacement (µm^2)',
+        xaxis=dict(range=[0, x_range], title_font=dict(size=25), tickfont=dict(size=20)),
+        yaxis=dict(range=[0, y_range], title_font=dict(size=25), tickfont=dict(size=20)),
+        width=figsize[0] * dpi / 100,
+        height=figsize[1] * dpi / 100
+    )
+
+    return fig
 
 def msd_viz(doses,geomean_df,geosem_df,fps):
     """
