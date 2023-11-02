@@ -2,9 +2,9 @@ import streamlit as st
 import pandas as pd
 
 st.set_page_config(page_title='Home', page_icon='🏠')
-st.title("diff_viz Dashboard \U0001F4CA")
+st.title("diff_illustrator Dashboard \U0001F4CA")
 
-st.header('diff_viz: Your One Stop Shop for MPT Plots!')
+st.header('diff_illustrator: Your One Stop Shop for MPT Plots!')
 
 
 st.markdown("""
