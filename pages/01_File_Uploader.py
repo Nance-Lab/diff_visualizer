@@ -69,6 +69,8 @@ else:
                 st.session_state['data_dict'][condition] = concat_df
         else:
             st.write('No files yet for', condition)
+    st.session_state['data_dict'] = data_dict # save to session state
+    st.session_state['df_in'] = True # set df_in to True to indicate that data has been uploaded
 
 
 
