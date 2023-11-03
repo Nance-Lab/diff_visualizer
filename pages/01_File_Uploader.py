@@ -173,7 +173,7 @@ if view_df:
         st.write(demo_df)
     elif num_conditions == 1:
         st.write('Uploaded dataset:')
-        st.write(st.session_state['data_dict'][conditions_list])
+        st.write(st.session_state['data_dict'])
     else:
         st.write('Uploaded dataset:')
         tabs_name_list = [condition + ' Condition data' for condition in conditions_list]
