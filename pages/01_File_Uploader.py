@@ -64,16 +64,15 @@ else:
             if len(files) == 1:
                 st.write(files[0].name)
                 data_dict[condition] = pd.read_csv(files[0])
+                st.session_state['data_dict'] = data_dict # save to session state
+                st.session_state['df_in'] = True # set df_in to True to indicate that data has been uploaded
             else:
                 concat_df = data_loading.concatenate_csv_files(files)
                 st.session_state['data_dict'][condition] = concat_df
+                st.session_state['data_dict'] = data_dict # save to session state
+                st.session_state['df_in'] = True # set df_in to True to indicate that data has been uploaded
         else:
             st.write('No files yet for', condition)
-    st.session_state['data_dict'] = data_dict # save to session state
-    st.session_state['df_in'] = True # set df_in to True to indicate that data has been uploaded
-
-
-
 
 
 
@@ -130,10 +129,14 @@ ss.save_state(dict(file_type = file_type))
 
 
 # Condition 1: have files uploaded and not using demo
-if st.session_state['df_in'] is not None and st.session_state['demo'] is False:
-    #st.write('Condition 1 is active')
-    pass
-
+if st.session_state['df_in'] is True and st.session_state['demo'] is False:
+    PROCESSING_STATE = True
+    #st.session_state['processing_state'] = processing_state
+    if PROCESSING_STATE:
+        st.write('Yay you uploaded some files! We are now doing some backend data processing. Please wait a few seconds.')
+        if st.session_state['file_type'] == 'MSD Trajectory Data':
+            for condition in conditions_list:
+                st.write(condition)
 # Condition 2: no files uploaded and using demo
 elif st.session_state['df_in'] is False and st.session_state['demo'] is True:
     #st.write('Condition 2 is active')

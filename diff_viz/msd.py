@@ -7,6 +7,7 @@ import pandas as pd
 import scipy.stats as stats
 import numpy.ma as ma
 import matplotlib.pyplot as plt
+from diff_viz import diff_utils
 
 from os import listdir, getcwd, chdir
 from os.path import isfile, join
@@ -15,7 +16,7 @@ from os.path import isfile, join
 
 def plot_individual_msds(df, x_range=10, y_range=100, umppx=0.16, fps=100.02, alpha=0.1,
                           figsize=(10, 10), subset=False, size=1000,
-                         dpi=300):
+                         dpi=300, title=None):
     """
     Plot MSDs of trajectories and the geometric average.
 
@@ -85,12 +86,9 @@ def plot_individual_msds(df, x_range=10, y_range=100, umppx=0.16, fps=100.02, al
     plt.xticks(fontsize=20)
     plt.yticks(fontsize=20)
     plt.tight_layout()
+    plt.title(title, fontsize=25)
     plt.show()
     return fig
-
-
-
-
 
 def msd_viz(doses,geomean_df,geosem_df,fps):
     """
@@ -114,8 +112,8 @@ def msd_viz(doses,geomean_df,geosem_df,fps):
 
     """
     count=0
-    msd_dose_list=get_df_dose_list(doses,geomean_df)
-    sem_dose_list=get_df_dose_list(doses,geosem_df)
+    msd_dose_list=diff_utils.get_df_dose_list(doses,geomean_df)
+    sem_dose_list=diff_utils.get_df_dose_list(doses,geosem_df)
     
     if len(doses)==1:
         tau=geomean_df.index.values/651
@@ -156,3 +154,35 @@ def msd_viz(doses,geomean_df,geosem_df,fps):
     
                 count+=1
     return fig
+
+
+def get_geo_data(merged, umppx=0.16, fps=100.02, size=1000):
+
+    "takes in a df and returns the geo mean and     geo SEM"
+
+    particles = int(max(merged['Track_ID']))
+
+    if particles < size:
+        size = particles - 1
+    else:
+        pass
+
+    frames = int(max(merged['Frame']))
+
+    y = merged['Y'].values.reshape((particles+1, frames+1))*umppx*umppx
+    x = merged['X'].values.reshape((particles+1, frames+1))/fps
+#     for i in range(0, particles+1):
+#         y[i, :] = merged.loc[merged.Track_ID == i, 'MSDs']*umppx*umppx
+#         x = merged.loc[merged.Track_ID == i, 'Frame']/fps
+
+    particles = np.linspace(0, particles, particles-1).astype(int)
+
+    y = np.zeros((particles.shape[0], frames+1))
+    for idx, val in enumerate(particles):
+        y[idx, :] = merged.loc[merged.Track_ID == val, 'MSDs']*umppx*umppx
+        x = merged.loc[merged.Track_ID == val, 'Frame']/fps
+
+    geo_mean = np.nanmean(ma.log(y), axis=0)
+    geo_SEM = stats.sem(ma.log(y), axis=0, nan_policy='omit')
+
+    return geo_mean, geo_SEM
