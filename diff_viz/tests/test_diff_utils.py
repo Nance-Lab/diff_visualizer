@@ -1,5 +1,4 @@
-from diff_viz.utils import *
-import pytest
+from diff_viz.diff_utils import *
 
 file_path = 'diff_viz/tests/testing_data/'
 
