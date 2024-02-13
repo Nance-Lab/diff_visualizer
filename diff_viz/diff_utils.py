@@ -47,7 +47,7 @@ def get_geo_dict(geo_list,doses):
     
     return geo_dict
 
-def get_geo_df(data_path,filetype,doses,timepoints,experiment):
+def get_geo_df(data_path,filetype,doses,timepoints):
     '''Constructs a dataframe of MSD values for every combination of dose/time.
     If there are multiple csv files for a single dose/time, the arithmatic mean is computed.
     The user has the option to generate dataframes for the MSD values (geoMean) or the standard

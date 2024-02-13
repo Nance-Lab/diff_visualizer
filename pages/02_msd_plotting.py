@@ -33,6 +33,9 @@ if st.session_state['file_type'] == 'MSD Trajectory Data':
     elif st.session_state['df_in'] is True and st.session_state['num_conditions'] ==1:
         data_to_plot = st.session_state['data_dict'][st.session_state['conditions_list'][0]]
     else:
+
+        
+
         st.write('Sorry, Nels has not made this possible yet.')
     render = st.sidebar.checkbox('Show MSD Trajectory plot?')
     if render:
