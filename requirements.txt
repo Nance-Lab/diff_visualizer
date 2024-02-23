@@ -11,6 +11,6 @@ numpydoc==1.5.0
 coverage
 hypothesis==6.75.9
 pydata-sphinx-theme
-diff_predictor
+diff-predictor==1.0.1.dev0
 diff_classifier
 scipy
