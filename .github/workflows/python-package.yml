@@ -27,8 +27,18 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install flake8 pytest
+        python -m pip install flake8 pytest coverage
         pip install -r requirements.txt
+
+    - name: Clone diff_predictor and diff_classifier
+      run: |
+        git clone https://github.com/Nance-Lab/diff_predictor.git
+        git clone https://github.com/Nance-Lab/diff_classifier.git
+    - name: run setup.py for repos
+      run: |
+        python diff_predictor/setup.py install
+        python diff_classifier/setup.py install
+        
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
