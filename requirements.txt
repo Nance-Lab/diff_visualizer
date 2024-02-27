@@ -9,8 +9,8 @@ streamlit_tags
 streamlit==1.9.2
 numpydoc==1.5.0
 coverage>=7.4.3
-hypothesis==6.14.0
+hypothesis>=6.14.0
 pydata-sphinx-theme
-diff_predictor
+diff_predictor==1.0.1.dev0
 diff_classifier
 scipy
