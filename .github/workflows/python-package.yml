@@ -36,8 +36,12 @@ jobs:
         git clone https://github.com/Nance-Lab/diff_classifier.git
     - name: run setup.py for repos
       run: |
-        python diff_predictor/setup.py install
+        cd diff_predictor
+        python setup.py install
+        cd ..
+        cd diff_classifier
         python diff_classifier/setup.py install
+        cd ..
         
     - name: Lint with flake8
       run: |
