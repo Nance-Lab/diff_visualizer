@@ -34,14 +34,15 @@ jobs:
       run: |
         git clone https://github.com/Nance-Lab/diff_predictor.git
         git clone https://github.com/Nance-Lab/diff_classifier.git
-    - name: run setup.py for repos
+    - name: run setup.py for diff_predictor
       run: |
         cd diff_predictor
         python setup.py install
-        cd ..
+        
+    - name: run setup.py for diff_classifier
+      run: |
         cd diff_classifier
-        python diff_classifier/setup.py install
-        cd ..
+        python setup.py install
         
     - name: Lint with flake8
       run: |
