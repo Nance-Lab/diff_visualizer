@@ -38,11 +38,16 @@ jobs:
       run: |
         cd diff_predictor
         python setup.py install
+        cd ..
+        rm -r diff_predictor
         
     - name: run setup.py for diff_classifier
       run: |
         cd diff_classifier
         python setup.py install
+        cd ..
+        rm -r diff_classifier
+        
         
     - name: Lint with flake8
       run: |
