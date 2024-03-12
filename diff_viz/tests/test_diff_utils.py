@@ -1,6 +1,6 @@
 from diff_viz.diff_utils import *
 
-file_path = 'diff_viz/tests/testing_data/'
+file_path = 'diff_viz/tests/testing_data/msd_data/'
 
 def test_get_experiment():
     date = '2019_01_01'
@@ -32,7 +32,7 @@ def test_get_geo_dict(file_path=file_path):
 def test_get_geo_df_geomean(file_path=file_path):
 
     #test geomean
-    geo_df = get_geo_df(file_path, filetype='geomean', doses=['1h', 'NT'], timepoints=['1d'], experiment=None)
+    geo_df = get_geo_df(file_path, filetype='geomean', doses=['1h', 'NT'], timepoints=['1d'])
     assert geo_df.shape == (650, 2)
     assert geo_df.columns[0] == '1h_1d'
     assert geo_df.columns[1] == 'NT_1d'
@@ -40,7 +40,7 @@ def test_get_geo_df_geomean(file_path=file_path):
 
 def test_get_geo_df_geoSEM(file_path=file_path):
     #test geosem
-    geo_df = get_geo_df(file_path, filetype='geoSEM', doses=['1h', 'NT'], timepoints=['1d'], experiment=None)
+    geo_df = get_geo_df(file_path, filetype='geoSEM', doses=['1h', 'NT'], timepoints=['1d'])
     assert geo_df.shape == (650, 2)
     assert geo_df.columns[0] == '1h_1d'
     assert geo_df.columns[1] == 'NT_1d'

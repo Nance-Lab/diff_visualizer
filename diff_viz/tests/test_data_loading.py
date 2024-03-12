@@ -5,9 +5,9 @@ import pandas as pd
 import numpy as np
 from diff_viz.data_loading import check_mpt_data, clean_mpt_data, combine_csvs
 from hypothesis import HealthCheck, given, settings, strategies as st
-from diff_viz.tests.hypothesis_util_functions import features_dataframe
+from diff_viz.tests.hypothesis_util_functions import hypothesis_features_dataframe
 
-df = features_dataframe()
+df = hypothesis_features_dataframe()
 
 @given(df)
 @settings(suppress_health_check=[HealthCheck.large_base_example, HealthCheck.too_slow])
@@ -50,15 +50,15 @@ def test_clean_mpt_data(df):
 
 def test_combine_csvs():
     file_list = [
-        'diff_viz/tests/testing_data/features_P14_40nm_s1_v1.csv',
-        'diff_viz/tests/testing_data/features_P14_40nm_s1_v2.csv',
-        'diff_viz/tests/testing_data/features_P14_40nm_s1_v3.csv',
-        'diff_viz/tests/testing_data/features_P35_brain_2_slice_1_vid_1.csv',
-        'diff_viz/tests/testing_data/features_P35_brain_2_slice_1_vid_2.csv',
-        'diff_viz/tests/testing_data/features_P35_brain_2_slice_1_vid_3.csv',
-        'diff_viz/tests/testing_data/features_P70_40nm_s1_v1.csv',
-        'diff_viz/tests/testing_data/features_P70_40nm_s1_v2.csv',
-        'diff_viz/tests/testing_data/features_P70_40nm_s1_v3.csv',
+        'diff_viz/tests/testing_data/feature_data/features_P14_40nm_s1_v1.csv',
+        'diff_viz/tests/testing_data/feature_data/features_P14_40nm_s1_v2.csv',
+        'diff_viz/tests/testing_data/feature_data/features_P14_40nm_s1_v3.csv',
+        'diff_viz/tests/testing_data/feature_data/features_P35_brain_2_slice_1_vid_1.csv',
+        'diff_viz/tests/testing_data/feature_data/features_P35_brain_2_slice_1_vid_2.csv',
+        'diff_viz/tests/testing_data/feature_data/features_P35_brain_2_slice_1_vid_3.csv',
+        'diff_viz/tests/testing_data/feature_data/features_P70_40nm_s1_v1.csv',
+        'diff_viz/tests/testing_data/feature_data/features_P70_40nm_s1_v2.csv',
+        'diff_viz/tests/testing_data/feature_data/features_P70_40nm_s1_v3.csv',
     ]
 
     def helper_func():
