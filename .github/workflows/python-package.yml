@@ -43,7 +43,9 @@ jobs:
         
     - name: run setup.py for diff_classifier
       run: |
-        python diff_classifier/setup.py install
+        cd diff_classifier
+        python setup.py install
+        cd ..
         rm -r diff_classifier
         
         
