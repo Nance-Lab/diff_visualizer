@@ -36,7 +36,9 @@ jobs:
         git clone https://github.com/Nance-Lab/diff_classifier.git
     - name: run setup.py for diff_predictor
       run: |
-        python diff_predictor/setup.py install
+        cd diff_predictor
+        python setup.py install
+        cd ..
         rm -r diff_predictor
         
     - name: run setup.py for diff_classifier
