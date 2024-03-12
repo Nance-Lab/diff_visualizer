@@ -20,14 +20,14 @@ def check_mpt_data(df, expected_columns):
     Returns
     --------
     columns_present, has_data: bool
-        True if the DataFrame contains at least one row of data and all of the expected columns, False otherwise.
+        True if the DataFrame contains at least one row of data and all of the expected columns, 
+        False otherwise.
     """
     # Check that all of the expected columns are present
     columns_present = all(col in df.columns for col in expected_columns)
-    
     # Check that the DataFrame has at least one row of data
     has_data = not df.empty
-    
+
     # Return True if both the expected columns and data are present
     return columns_present and has_data
 
