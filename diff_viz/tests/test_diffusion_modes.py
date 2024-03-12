@@ -7,7 +7,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Set up the testing data
-testing_data_path = '../diff_viz/diff_viz/tests/testing_data/feature_data/'
+testing_data_path = '../diff_viz/tests/testing_data/feature_data/'
 striatum_file = 'features_60X_Striatum_Slice2_Video1.csv'
 cortex_file = 'features_100X_OGD_Cortex_Slice2_Video1.csv'
 df_striat = pd.read_csv(testing_data_path+striatum_file)
