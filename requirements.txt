@@ -1,0 +1,13 @@
+pandas
+numpy
+matplotlib
+seaborn
+pytest
+jupyter
+ipykernel
+streamlit_tags
+streamlit==1.9.2
+numpydoc==1.5.0
+hypothesis
+pydata-sphinx-theme
+scipy

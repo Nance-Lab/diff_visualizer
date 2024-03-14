@@ -1,0 +1,18 @@
+name: diff_viz
+channels:
+  - defaults
+dependencies:
+  - python>=3.9
+  - pandas
+  - numpy
+  - matplotlib
+  - seaborn
+  - pytest
+  - jupyter
+  - ipykernel
+  - numpydoc==1.5.0
+  - diff_predictor
+  - diff_classifier
+  - scipy
+  #- streamlit_tags
+  #- streamlit==1.9.2
