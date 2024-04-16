@@ -1,9 +1,8 @@
 ![diff_viz_logo](docs/_static/whale_whale_whale.png)
+## diff_viz
 
 
 ![GitHub](https://img.shields.io/github/license/nance-lab/diff_viz)[![Tests](https://github.com/Nance-Lab/diff_viz/actions/workflows/python-package.yml/badge.svg?branch=main)](https://github.com/Nance-Lab/diff_viz/actions/workflows/python-package.yml)[![Documentation Status](https://readthedocs.org/projects/diff-viz/badge/?version=latest)](https://diff-viz.readthedocs.io/en/latest/?badge=latest)[![codecov](https://codecov.io/gh/Nance-Lab/diff_viz/branch/main/graph/badge.svg?token=GKJQGMB080)](https://codecov.io/gh/Nance-Lab/diff_viz)
-
-## diff_viz
 
 This package will allow researchers working with Multiple Particle Tracking (MPT) data to quickly generate informative data visualizations.
 
