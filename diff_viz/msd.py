@@ -156,7 +156,7 @@ def msd_viz(doses,geomean_df,geosem_df,fps):
     return fig
 
 
-def get_geo_data(merged, umppx=0.16, fps=100.02, size=1000, frames=651):
+def get_geo_data(merged, umppx=0.16, fps=100.02, size=1000):
 
     "takes in a df and returns the geo mean and     geo SEM"
 
@@ -167,20 +167,19 @@ def get_geo_data(merged, umppx=0.16, fps=100.02, size=1000, frames=651):
     else:
         pass
 
-    #frames = int(max(merged['Frame']))
+    frames = int(max(merged['Frame']))
 
-    #y = merged['Y'].values.reshape((particles+1, frames+1))*umppx*umppx
-    #x = merged['X'].values.reshape((particles+1, frames+1))/fps
+    y = merged['Y'].values.reshape((particles+1, frames+1))*umppx*umppx
+    x = merged['X'].values.reshape((particles+1, frames+1))/fps
 #     for i in range(0, particles+1):
 #         y[i, :] = merged.loc[merged.Track_ID == i, 'MSDs']*umppx*umppx
 #         x = merged.loc[merged.Track_ID == i, 'Frame']/fps
 
     particles = np.linspace(0, particles, particles-1).astype(int)
 
-    y = np.full(shape=(particles.shape[0], frames), fill_value=np.nan)
+    y = np.zeros((particles.shape[0], frames+1))
     for idx, val in enumerate(particles):
-        y_data = merged.loc[merged.Track_ID == val, 'MSDs']*umppx*umppx
-        y[idx, 0:len(y_data)] = y_data#merged.loc[merged.Track_ID == val, 'MSDs']*umppx*umppx
+        y[idx, :] = merged.loc[merged.Track_ID == val, 'MSDs']*umppx*umppx
         x = merged.loc[merged.Track_ID == val, 'Frame']/fps
 
     geo_mean = np.nanmean(ma.log(y), axis=0)
