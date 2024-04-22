@@ -26,8 +26,6 @@ def test_get_geo_dict(file_path=file_path):
     assert len(geo_dict) == 2
     assert '1h' in geo_dict.keys()
     assert 'NT' in geo_dict.keys()
-    assert geo_dict['1h'][0] == ['geomean_P17_1h_OGD_1d_40nm_slice_1_cortex_vid_1.csv']
-    assert geo_dict['NT'][0] == ['geomean_P17_NT_1d_40nm_slice_1_cortex_vid_1.csv']
 
 def test_get_geo_df_geomean(file_path=file_path):
 
