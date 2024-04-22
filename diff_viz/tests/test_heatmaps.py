@@ -6,13 +6,14 @@ import matplotlib as mpl
 import diff_classifier.msd as msd
 import diff_classifier.features as ft
 import diff_viz.heatmaps as hm
-mpl.use('Agg')
+
+mpl.use("Agg")
 
 
 def test_voronoi_finite_polygons_2d():
-    prefix = 'test'
-    msd_file = 'msd_{}.csv'.format(prefix)
-    ft_file = 'features_{}.csv'.format(prefix)
+    prefix = "test"
+    msd_file = "msd_{}.csv".format(prefix)
+    ft_file = "features_{}.csv".format(prefix)
 
     dataf = msd.random_traj_dataset(nparts=30, ndist=(1, 1), seed=3)
     msds = msd.all_msds2(dataf, frames=100)
@@ -20,8 +21,8 @@ def test_voronoi_finite_polygons_2d():
     feat = ft.calculate_features(msds)
     feat.to_csv(ft_file)
 
-    xs = feat['X'].astype(int)
-    ys = feat['Y'].astype(int)
+    xs = feat["X"].astype(int)
+    ys = feat["Y"].astype(int)
     points = np.zeros((xs.shape[0], 2))
     points[:, 0] = xs
     points[:, 1] = ys
@@ -33,15 +34,17 @@ def test_voronoi_finite_polygons_2d():
 
 
 def test_plot_heatmap():
-    prefix = 'test'
-    msd_file = 'msd_{}.csv'.format(prefix)
-    ft_file = 'features_{}.csv'.format(prefix)
+    prefix = "test"
+    msd_file = "msd_{}.csv".format(prefix)
+    ft_file = "features_{}.csv".format(prefix)
 
     dataf = msd.random_traj_dataset(nparts=30, ndist=(1, 1), seed=3)
     msds = msd.all_msds2(dataf, frames=100)
     msds.to_csv(msd_file)
     feat = ft.calculate_features(msds)
-    #feat.to_csv(ft_file)
+    # feat.to_csv(ft_file)
 
-    hm.plot_heatmap(prefix, feat_df=feat, resolution=520, rows=1, cols=1, figsize=(6,5))
-    assert os.path.isfile('{}_hm_Deff1.png'.format(prefix))
+    hm.plot_heatmap(
+        prefix, feat_df=feat, resolution=520, rows=1, cols=1, figsize=(6, 5)
+    )
+    assert os.path.isfile("{}_hm_Deff1.png".format(prefix))

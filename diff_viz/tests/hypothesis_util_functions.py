@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from hypothesis import strategies as st, given, settings
 
+
 def hypothesis_features_dataframe(include_target_col=False):
     float_without_nan_st = st.floats(min_value=0.0001, max_value=3030, allow_nan=False)
     float_with_nan_st = st.floats(allow_nan=True, allow_infinity=False)
@@ -10,51 +11,55 @@ def hypothesis_features_dataframe(include_target_col=False):
 
     np.random.seed(1234)
     param = {}
-    df_columns = {'alpha': {'elements': float_with_nan_st, 'unique': True},
-                'D_fit': {'elements': float_with_nan_st, 'unique': True},
-                'kurtosis': {'elements': float_with_nan_st, 'unique': True},
-                'asymmetry1': {'elements': float_with_nan_st, 'unique': True},
-                'asymmetry2': {'elements': float_with_nan_st, 'unique': True},
-                'asymmetry3': {'elements': float_with_nan_st, 'unique': True},
-                'AR': {'elements': float_with_nan_st, 'unique': True},
-                'elongation': {'elements': float_with_nan_st, 'unique': True},
-                'boundedness': {'elements': float_with_nan_st, 'unique': True},
-                'fractal_dim': {'elements': float_with_nan_st, 'unique': True},
-                'trappedness': {'elements': float_with_nan_st, 'unique': True},
-                'efficiency': {'elements': float_with_nan_st, 'unique': True},
-                'straightness': {'elements': float_with_nan_st, 'unique': True},
-                'MSD_ratio': {'elements': float_with_nan_st, 'unique': True},
-                'frames': {'elements': int_st, 'unique': True},
-                'Deff1': {'elements': float_with_nan_st, 'unique': True},
-                'Deff2': {'elements': float_with_nan_st, 'unique': True},
-                # 'angle_mean', 
-                # 'angle_mag_mean',
-                # 'angle_var', 
-                # 'dist_tot', 
-                # 'dist_net', 
-                # 'progression',
-                'Mean alpha': {'elements': float_with_nan_st, 'unique': True},
-                'Mean D_fit': {'elements': float_with_nan_st, 'unique': True},
-                'Mean kurtosis': {'elements': float_with_nan_st, 'unique': True},
-                'Mean asymmetry1': {'elements': float_with_nan_st, 'unique': True},
-                'Mean asymmetry2': {'elements': float_with_nan_st, 'unique': True},
-                'Mean asymmetry3': {'elements': float_with_nan_st, 'unique': True},
-                'Mean AR': {'elements': float_with_nan_st, 'unique': True},
-                'Mean elongation': {'elements': float_with_nan_st, 'unique': True},
-                'Mean boundedness': {'elements': float_with_nan_st, 'unique': True},
-                'Mean fractal_dim': {'elements': float_with_nan_st, 'unique': True},
-                'Mean trappedness': {'elements': float_with_nan_st, 'unique': True},
-                'Mean efficiency': {'elements': float_with_nan_st, 'unique': True},
-                'Mean straightness': {'elements': float_with_nan_st, 'unique': True},
-                'Mean MSD_ratio': {'elements': float_with_nan_st, 'unique': True},
-                'Mean Deff1': {'elements': float_with_nan_st, 'unique': True},
-                'Mean Deff2': {'elements': float_with_nan_st, 'unique': True},
-                }   
+    df_columns = {
+        "alpha": {"elements": float_with_nan_st, "unique": True},
+        "D_fit": {"elements": float_with_nan_st, "unique": True},
+        "kurtosis": {"elements": float_with_nan_st, "unique": True},
+        "asymmetry1": {"elements": float_with_nan_st, "unique": True},
+        "asymmetry2": {"elements": float_with_nan_st, "unique": True},
+        "asymmetry3": {"elements": float_with_nan_st, "unique": True},
+        "AR": {"elements": float_with_nan_st, "unique": True},
+        "elongation": {"elements": float_with_nan_st, "unique": True},
+        "boundedness": {"elements": float_with_nan_st, "unique": True},
+        "fractal_dim": {"elements": float_with_nan_st, "unique": True},
+        "trappedness": {"elements": float_with_nan_st, "unique": True},
+        "efficiency": {"elements": float_with_nan_st, "unique": True},
+        "straightness": {"elements": float_with_nan_st, "unique": True},
+        "MSD_ratio": {"elements": float_with_nan_st, "unique": True},
+        "frames": {"elements": int_st, "unique": True},
+        "Deff1": {"elements": float_with_nan_st, "unique": True},
+        "Deff2": {"elements": float_with_nan_st, "unique": True},
+        # 'angle_mean',
+        # 'angle_mag_mean',
+        # 'angle_var',
+        # 'dist_tot',
+        # 'dist_net',
+        # 'progression',
+        "Mean alpha": {"elements": float_with_nan_st, "unique": True},
+        "Mean D_fit": {"elements": float_with_nan_st, "unique": True},
+        "Mean kurtosis": {"elements": float_with_nan_st, "unique": True},
+        "Mean asymmetry1": {"elements": float_with_nan_st, "unique": True},
+        "Mean asymmetry2": {"elements": float_with_nan_st, "unique": True},
+        "Mean asymmetry3": {"elements": float_with_nan_st, "unique": True},
+        "Mean AR": {"elements": float_with_nan_st, "unique": True},
+        "Mean elongation": {"elements": float_with_nan_st, "unique": True},
+        "Mean boundedness": {"elements": float_with_nan_st, "unique": True},
+        "Mean fractal_dim": {"elements": float_with_nan_st, "unique": True},
+        "Mean trappedness": {"elements": float_with_nan_st, "unique": True},
+        "Mean efficiency": {"elements": float_with_nan_st, "unique": True},
+        "Mean straightness": {"elements": float_with_nan_st, "unique": True},
+        "Mean MSD_ratio": {"elements": float_with_nan_st, "unique": True},
+        "Mean Deff1": {"elements": float_with_nan_st, "unique": True},
+        "Mean Deff2": {"elements": float_with_nan_st, "unique": True},
+    }
 
-
-    test_dfs = data_frames(index=range_indexes(min_size=10), columns=[column(key, **value) for key, value in df_columns.items()])
+    test_dfs = data_frames(
+        index=range_indexes(min_size=10),
+        columns=[column(key, **value) for key, value in df_columns.items()],
+    )
 
     return test_dfs
+
 
 # def features_dataframe(features=categories, include_target_col=True):
 
@@ -70,4 +75,4 @@ def hypothesis_features_dataframe(include_target_col=False):
 #     return df
 
 dfs = hypothesis_features_dataframe(include_target_col=False)
-print('done')
+print("done")

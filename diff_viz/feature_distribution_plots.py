@@ -1,9 +1,12 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-def feature_violin_plot(df, feature_to_plot, label_column=None, figsize=(2,2), title=None):
+
+def feature_violin_plot(
+    df, feature_to_plot, label_column=None, figsize=(2, 2), title=None
+):
     """
-    Function to plot a violin plot of a feature in a dataframe. 
+    Function to plot a violin plot of a feature in a dataframe.
 
     Parameters
     ----------
@@ -17,7 +20,7 @@ def feature_violin_plot(df, feature_to_plot, label_column=None, figsize=(2,2), t
     -------
         fig: seaborn figure of the violin plot
     """
-    #df = df[df[feature_to_plot]<10] #temporary fix for outliers
+    # df = df[df[feature_to_plot]<10] #temporary fix for outliers
 
     fig = plt.figure(figsize=figsize)
     if label_column is None:

@@ -3,7 +3,10 @@
 import pandas as pd
 import math
 
-def viscosity_from_diffusion_coefficient(dataframe, diffusion_coefficient_column, temperature, particle_radius):
+
+def viscosity_from_diffusion_coefficient(
+    dataframe, diffusion_coefficient_column, temperature, particle_radius
+):
     """
     Calculate viscosity of a fluid using the Stokes-Einstein equation.
 
@@ -41,13 +44,16 @@ def viscosity_from_diffusion_coefficient(dataframe, diffusion_coefficient_column
 
     def calculate_viscosity(diffusion_coefficient):
         # Calculate viscosity using Stokes-Einstein equation
-        return (k_b * temperature) / (6 * math.pi * diffusion_coefficient * particle_radius)
+        return (k_b * temperature) / (
+            6 * math.pi * diffusion_coefficient * particle_radius
+        )
 
     # Apply the function to the specified column
     if diffusion_coefficient_column not in dataframe.columns:
         raise ValueError("Diffusion coefficient column not found in DataFrame.")
     else:
-        viscosity_series = dataframe[diffusion_coefficient_column].apply(calculate_viscosity)
+        viscosity_series = dataframe[diffusion_coefficient_column].apply(
+            calculate_viscosity
+        )
 
     return viscosity_series
-

@@ -10,6 +10,7 @@ from shapely.geometry.polygon import Polygon
 import numpy.ma as ma
 import matplotlib.cm as cm
 
+
 def voronoi_finite_polygons_2d(vor, radius=None):
     """
     Reconstruct infinite voronoi regions in a 2D diagram to finite
@@ -97,13 +98,25 @@ def voronoi_finite_polygons_2d(vor, radius=None):
 
     return new_regions, np.asarray(new_vertices)
 
-def plot_heatmap(prefix, feat_df, feature='Deff1', vmin=0, vmax=1, resolution=512, rows=4, cols=4, dpi=None, figsize=(12, 10)):
+
+def plot_heatmap(
+    prefix,
+    feat_df,
+    feature="Deff1",
+    vmin=0,
+    vmax=1,
+    resolution=512,
+    rows=4,
+    cols=4,
+    dpi=None,
+    figsize=(12, 10),
+):
     """
     Plot heatmap of trajectories in video with colors corresponding to features.
 
     Parameters
     ----------
-    
+
     prefix: string
         Prefix of file name to be plotted e.g. features_P1.csv prefix is P1.
     feature: string
@@ -118,7 +131,7 @@ def plot_heatmap(prefix, feat_df, feature='Deff1', vmin=0, vmax=1, resolution=51
         Rows of base images used to build tiled image.
     cols: int
         Columns of base images used to build tiled images.
-   
+
     dpi: int
         Desired dpi of output image.
     figsize: list
@@ -130,7 +143,7 @@ def plot_heatmap(prefix, feat_df, feature='Deff1', vmin=0, vmax=1, resolution=51
     """
     # Inputs
     # ----------
-    
+
     string = feature
     t_min = vmin
     t_max = vmax
@@ -144,8 +157,8 @@ def plot_heatmap(prefix, feat_df, feature='Deff1', vmin=0, vmax=1, resolution=51
     to_mask = ma.getmask(zs)
     zs = ma.compressed(zs)
 
-    xs = ma.compressed(ma.masked_where(to_mask, feat_df['X'].astype(int)))
-    ys = ma.compressed(ma.masked_where(to_mask, feat_df['Y'].astype(int)))
+    xs = ma.compressed(ma.masked_where(to_mask, feat_df["X"].astype(int)))
+    ys = ma.compressed(ma.masked_where(to_mask, feat_df["Y"].astype(int)))
     points = np.zeros((xs.shape[0], 2))
     points[:, 0] = xs
     points[:, 1] = ys
@@ -155,14 +168,14 @@ def plot_heatmap(prefix, feat_df, feature='Deff1', vmin=0, vmax=1, resolution=51
     # ----------
     fig = plt.figure(figsize=figsize, dpi=dpi)
     regions, vertices = voronoi_finite_polygons_2d(vor)
-    my_map = mpl.colormaps['viridis']
+    my_map = mpl.colormaps["viridis"]
     norm = mpl.colors.Normalize(t_min, t_max, clip=True)
-    mapper = cm.ScalarMappable(norm=norm, cmap=mpl.colormaps['viridis'])
+    mapper = cm.ScalarMappable(norm=norm, cmap=mpl.colormaps["viridis"])
 
     test = 0
     p2 = 0
     counter = 0
-    for i in range(0, points.shape[0]-1):
+    for i in range(0, points.shape[0] - 1):
         try:
             polygon = vertices[regions[p2]]
             point1 = Point(points[test, :])
@@ -175,21 +188,30 @@ def plot_heatmap(prefix, feat_df, feature='Deff1', vmin=0, vmax=1, resolution=51
             else:
                 test = test + 1
         except IndexError:
-            print('Index mismatch possible.')
+            print("Index mismatch possible.")
 
     mapper.set_array(10)
-    #plt.colorbar(mapper)
-    plt.xlim(0, ires*cols)
-    plt.ylim(0, ires*rows)
-    plt.axis('off')
+    # plt.colorbar(mapper)
+    plt.xlim(0, ires * cols)
+    plt.ylim(0, ires * rows)
+    plt.axis("off")
 
-    print('Plotted {} heatmap successfully.')
-    outfile = '{}_hm_{}.png'.format(prefix, feature)
-    fig.savefig(outfile, bbox_inches='tight')
-    
+    print("Plotted {} heatmap successfully.")
+    outfile = "{}_hm_{}.png".format(prefix, feature)
+    fig.savefig(outfile, bbox_inches="tight")
 
-def plot_scatterplot(feat_df, feature='asymmetry1', vmin=0, vmax=1, resolution=512, rows=4, cols=4,
-                     dotsize=10, figsize=(12, 10), ):
+
+def plot_scatterplot(
+    feat_df,
+    feature="asymmetry1",
+    vmin=0,
+    vmax=1,
+    resolution=512,
+    rows=4,
+    cols=4,
+    dotsize=10,
+    figsize=(12, 10),
+):
     """
     Plot scatterplot of trajectories in video with colors corresponding to features.
 
@@ -208,7 +230,7 @@ def plot_scatterplot(feat_df, feature='asymmetry1', vmin=0, vmax=1, resolution=5
         Rows of base images used to build tiled image.
     cols: int
         Columns of base images used to build tiled images.
-    
+
 
     """
     # Inputs
@@ -220,23 +242,23 @@ def plot_scatterplot(feat_df, feature='asymmetry1', vmin=0, vmax=1, resolution=5
     ires = resolution
 
     norm = mpl.colors.Normalize(t_min, t_max, clip=True)
-    mapper = cm.ScalarMappable(norm=norm, cmap=mpl.colormaps['viridis'])
+    mapper = cm.ScalarMappable(norm=norm, cmap=mpl.colormaps["viridis"])
 
     zs = ma.masked_invalid(feat_df[string])
     zs = ma.masked_where(zs <= t_min, zs)
     zs = ma.masked_where(zs >= t_max, zs)
     to_mask = ma.getmask(zs)
     zs = ma.compressed(zs)
-    xs = ma.compressed(ma.masked_where(to_mask, feat_df['X'].astype(int)))
-    ys = ma.compressed(ma.masked_where(to_mask, feat_df['Y'].astype(int)))
+    xs = ma.compressed(ma.masked_where(to_mask, feat_df["X"].astype(int)))
+    ys = ma.compressed(ma.masked_where(to_mask, feat_df["Y"].astype(int)))
 
     fig = plt.figure(figsize=figsize)
     plt.scatter(xs, ys, c=zs, s=dotsize)
     mapper.set_array(10)
-    #plt.colorbar(mapper)
-    plt.xlim(0, ires*cols)
-    plt.ylim(0, ires*rows)
-    plt.axis('off')
+    # plt.colorbar(mapper)
+    plt.xlim(0, ires * cols)
+    plt.ylim(0, ires * rows)
+    plt.axis("off")
 
     # print('Plotted {} scatterplot successfully.'.format(prefix))
     # outfile = 'scatter_{}_{}.png'.format(feature, prefix)
@@ -245,8 +267,9 @@ def plot_scatterplot(feat_df, feature='asymmetry1', vmin=0, vmax=1, resolution=5
     #     aws.upload_s3(outfile, remote_folder+'/'+outfile, bucket_name=bucket)
 
 
-def plot_trajectories(msd_df, resolution=512, rows=4, cols=4, 
-                      figsize=(12, 12), subset=True, size=1000):
+def plot_trajectories(
+    msd_df, resolution=512, rows=4, cols=4, figsize=(12, 12), subset=True, size=1000
+):
     """
     Plot trajectories in video.
 
@@ -265,25 +288,25 @@ def plot_trajectories(msd_df, resolution=512, rows=4, cols=4,
 
     """
     merged = msd_df
-    particles = int(max(merged['Track_ID']))
+    particles = int(max(merged["Track_ID"]))
     if particles < size:
         size = particles - 1
     else:
         pass
-    particles = np.linspace(0, particles, particles-1).astype(int)
+    particles = np.linspace(0, particles, particles - 1).astype(int)
     if subset:
         particles = np.random.choice(particles, size=size, replace=False)
     ires = resolution
 
     fig = plt.figure(figsize=figsize)
     for part in particles:
-        x = merged[merged['Track_ID'] == part]['X']
-        y = merged[merged['Track_ID'] == part]['Y']
-        plt.plot(x, y, color='k', alpha=0.7)
+        x = merged[merged["Track_ID"] == part]["X"]
+        y = merged[merged["Track_ID"] == part]["Y"]
+        plt.plot(x, y, color="k", alpha=0.7)
 
-    plt.xlim(0, ires*cols)
-    plt.ylim(0, ires*rows)
-    plt.axis('off')
+    plt.xlim(0, ires * cols)
+    plt.ylim(0, ires * rows)
+    plt.axis("off")
 
     # print('Plotted {} trajectories successfully.'.format(prefix))
     # outfile = 'traj_{}.png'.format(prefix)
