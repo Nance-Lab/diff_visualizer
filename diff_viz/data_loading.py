@@ -103,7 +103,7 @@ def clean_mpt_data(df, features_to_keep='default', target_column=None):
     
     return df
 
-def combine_csvs(file_list, class_list, features_to_keep='default'):
+def combine_csvs(file_list, class_list, features_to_keep='default', target_column=None):
     """
     Combines multiple CSV files into a single DataFrame.
     
@@ -128,10 +128,10 @@ def combine_csvs(file_list, class_list, features_to_keep='default'):
         df = pd.read_csv(file)
         for unique_class in class_list:
             if unique_class in file:
-                df['class'] = unique_class
+                df[target_column] = unique_class
                 df_list.append(df)
     full_df = pd.concat(df_list)
-    full_df = clean_mpt_data(full_df, features_to_keep=features_to_keep, target_column='class')
+    full_df = clean_mpt_data(full_df, features_to_keep=features_to_keep, target_column=target_column)
 
     return full_df
 

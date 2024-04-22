@@ -5,7 +5,7 @@ from scipy.spatial import Voronoi
 import matplotlib as mpl
 import diff_classifier.msd as msd
 import diff_classifier.features as ft
-import diff_classifier.heatmaps as hm
+import diff_viz.heatmaps as hm
 mpl.use('Agg')
 
 
@@ -41,7 +41,7 @@ def test_plot_heatmap():
     msds = msd.all_msds2(dataf, frames=100)
     msds.to_csv(msd_file)
     feat = ft.calculate_features(msds)
-    feat.to_csv(ft_file)
+    #feat.to_csv(ft_file)
 
-    hm.plot_heatmap(prefix, resolution=520, rows=1, cols=1, figsize=(6,5), upload=False)
-    assert os.path.isfile('hm_asymmetry1_{}.png'.format(prefix))
+    hm.plot_heatmap(prefix, feat_df=feat, resolution=520, rows=1, cols=1, figsize=(6,5))
+    assert os.path.isfile('{}_hm_Deff1.png'.format(prefix))

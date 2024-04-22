@@ -25,4 +25,4 @@ __pycache__
 *.bmp
 *.tiff
 *.tif
-
+*.egg*

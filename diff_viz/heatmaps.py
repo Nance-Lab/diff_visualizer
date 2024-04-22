@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 from scipy.spatial import Voronoi
 import scipy.stats as stats
 import os
-import os.path as op
 from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
 import numpy.ma as ma
@@ -98,13 +97,15 @@ def voronoi_finite_polygons_2d(vor, radius=None):
 
     return new_regions, np.asarray(new_vertices)
 
-def plot_heatmap(feat_df, feature='Deff1', vmin=0, vmax=1, resolution=512, rows=4, cols=4, dpi=None, figsize=(12, 10)):
+def plot_heatmap(prefix, feat_df, feature='Deff1', vmin=0, vmax=1, resolution=512, rows=4, cols=4, dpi=None, figsize=(12, 10)):
     """
     Plot heatmap of trajectories in video with colors corresponding to features.
 
     Parameters
     ----------
     
+    prefix: string
+        Prefix of file name to be plotted e.g. features_P1.csv prefix is P1.
     feature: string
         Feature to be plotted.  See features_analysis.py
     vmin: float64
@@ -131,7 +132,6 @@ def plot_heatmap(feat_df, feature='Deff1', vmin=0, vmax=1, resolution=512, rows=
     # ----------
     
     string = feature
-    leveler = feat_df[string]
     t_min = vmin
     t_max = vmax
     ires = resolution
@@ -155,7 +155,7 @@ def plot_heatmap(feat_df, feature='Deff1', vmin=0, vmax=1, resolution=512, rows=
     # ----------
     fig = plt.figure(figsize=figsize, dpi=dpi)
     regions, vertices = voronoi_finite_polygons_2d(vor)
-    my_map = cm.get_cmap('viridis')
+    my_map = mpl.colormaps['viridis']
     norm = mpl.colors.Normalize(t_min, t_max, clip=True)
     mapper = cm.ScalarMappable(norm=norm, cmap=mpl.colormaps['viridis'])
 
@@ -178,14 +178,14 @@ def plot_heatmap(feat_df, feature='Deff1', vmin=0, vmax=1, resolution=512, rows=
             print('Index mismatch possible.')
 
     mapper.set_array(10)
-    plt.colorbar(mapper)
+    #plt.colorbar(mapper)
     plt.xlim(0, ires*cols)
     plt.ylim(0, ires*rows)
     plt.axis('off')
 
     print('Plotted {} heatmap successfully.')
-    # outfile = 'hm_{}_{}.png'.format(feature, prefix)
-    # fig.savefig(outfile, bbox_inches='tight')
+    outfile = '{}_hm_{}.png'.format(prefix, feature)
+    fig.savefig(outfile, bbox_inches='tight')
     
 
 def plot_scatterplot(feat_df, feature='asymmetry1', vmin=0, vmax=1, resolution=512, rows=4, cols=4,
@@ -233,7 +233,7 @@ def plot_scatterplot(feat_df, feature='asymmetry1', vmin=0, vmax=1, resolution=5
     fig = plt.figure(figsize=figsize)
     plt.scatter(xs, ys, c=zs, s=dotsize)
     mapper.set_array(10)
-    plt.colorbar(mapper)
+    #plt.colorbar(mapper)
     plt.xlim(0, ires*cols)
     plt.ylim(0, ires*rows)
     plt.axis('off')

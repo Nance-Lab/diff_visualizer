@@ -83,12 +83,13 @@ def plot_pca_bi_plot(df,
 
     """
     fig = plt.figure(figsize=(12,8))
-
+    
     if target_col:
         labels = np.array(df[target_col])
         label_col = df[target_col]
         df = df.drop(target_col, axis=1)
     
+    df = df[features]
     # Scale the data 
     df = StandardScaler().fit_transform(df)
     # Perform PCA 

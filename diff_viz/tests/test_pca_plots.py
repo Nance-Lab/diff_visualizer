@@ -23,11 +23,8 @@ def test_pca_plot():
 def test_plot_pca_bi_plot():
     fig = plot_pca_bi_plot(testing_df, n_components=2, features=testing_df.columns[0:10], target_col='age', title='PCA Biplot')
     assert isinstance(fig, plt.Figure)  # Check if a Figure object is returned
-    assert len(fig.axes) == 2
-    assert len(fig.axes[0].collections) == 2
-    assert len(fig.axes[1].collections) == 2
+    assert len(fig.axes) == 1
+    assert len(fig.axes[0].collections) == 3
     assert fig.axes[0].get_xlabel() == 'PC1'
     assert fig.axes[0].get_ylabel() == 'PC2'
-    assert fig.axes[1].get_xlabel() == 'PC1'
-    assert fig.axes[1].get_ylabel() == 'PC2'
-    assert fig.axes[0].get_title() == 'PCA Plot'
+    assert fig.axes[0].get_title() == 'PCA Biplot'

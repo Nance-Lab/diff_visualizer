@@ -1,10 +1,7 @@
-import pytest
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from diff_viz.diffusion_modes import plot_diffusion_modes_single_label, plot_diffusion_modes
-import pandas as pd
-import matplotlib.pyplot as plt
 
 # Set up the testing data
 testing_data_path = '../diff_visualizer/diff_viz/tests/testing_data/feature_data/'
